@@ -2,3 +2,7 @@
 *.user
 bin
 obj
+.vscode
+.DS_Store
+appsettings.json
+*.db
