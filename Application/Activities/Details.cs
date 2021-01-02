@@ -3,7 +3,6 @@ using System.Threading;
 using System.Threading.Tasks;
 using Domain;
 using MediatR;
-using Microsoft.Extensions.Logging;
 using Persistence;
 
 namespace Application.Activities
