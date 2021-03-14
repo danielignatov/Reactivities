@@ -13,6 +13,20 @@ import SelectInput from '../../../app/common/form/SelectInput';
 import { category } from '../../../app/common/options/categoryOptions';
 import DateInput from '../../../app/common/form/DateInput';
 import { combineDateAndTime } from '../../../app/common/util/util';
+import {combineValidators, composeValidators, hasLengthGreaterThan, isRequired} from 'revalidate';
+
+const validate = combineValidators({
+    title: isRequired({message: 'The event title is required'}),
+    category: isRequired('Category'),
+    description: composeValidators(
+        isRequired('Description'),
+        hasLengthGreaterThan(4)({message: 'Description needs to be at least 5 characters'})
+    )(),
+    city: isRequired('City'),
+    venue: isRequired('Venue'),
+    date: isRequired('Date'),
+    time: isRequired('Time')
+})
 
 interface DetailParams {
     id: string;
@@ -28,7 +42,7 @@ const ActivityForm: React.FC<RouteComponentProps<DetailParams>> = ({ match, hist
         loadActivity
     } = activityStore;
 
-    const [activity, setActivity] = useState<IActivityFormValues>(new ActivityFormValues());
+    const [activity, setActivity] = useState(new ActivityFormValues());
     const [loading, setLoading] = useState(false);
 
     useEffect(() => {
@@ -49,9 +63,9 @@ const ActivityForm: React.FC<RouteComponentProps<DetailParams>> = ({ match, hist
                 ...activity,
                 id: uuid()
             };
-            createActivity(newActivity);
+            createActivity(newActivity).then(() => history.push(`/activities/${newActivity.id}`));
         } else {
-            editActivity(activity);
+            editActivity(activity).then(() => history.push(`/activities/${activity.id}`));
         }
     }
 
@@ -60,9 +74,10 @@ const ActivityForm: React.FC<RouteComponentProps<DetailParams>> = ({ match, hist
             <Grid.Column width={10}>
                 <Segment clearing>
                     <FinalForm
+                        validate={validate}
                         initialValues={activity}
                         onSubmit={handleFinalFormSubmit}
-                        render={({ handleSubmit }) => (
+                        render={({ handleSubmit, invalid, pristine }) => (
                             <Form onSubmit={handleSubmit} loading={loading} >
                                 <Field
                                     component={TextInput}
@@ -106,7 +121,7 @@ const ActivityForm: React.FC<RouteComponentProps<DetailParams>> = ({ match, hist
                                     placeholder='Venue'
                                     value={activity.venue} />
                                 <Button 
-                                disabled={loading} 
+                                disabled={loading || invalid || pristine} 
                                 loading={submitting} 
                                 floated='right' 
                                 positive type='submit' 

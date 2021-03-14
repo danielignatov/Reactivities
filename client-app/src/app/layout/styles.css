@@ -41,3 +41,11 @@ body {
 }
 
 /*end home page styles*/
+
+/* activity form */
+
+.rw-widget-input {
+  border: 0 !important;
+}
+
+/* end activity form */
