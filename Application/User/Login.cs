@@ -11,7 +11,7 @@ namespace Application.User
 {
     public class Login
     {
-        public class Query : IRequest<AppUser>
+        public class Query : IRequest<User>
         {
             public string Email { get; set; }
 
@@ -27,7 +27,7 @@ namespace Application.User
             }
         }
 
-        public class Handler : IRequestHandler<Query, AppUser>
+        public class Handler : IRequestHandler<Query, User>
         {
             private readonly UserManager<AppUser> _userManager;
             private readonly SignInManager<AppUser> _signInManager;
@@ -40,7 +40,7 @@ namespace Application.User
                 this._signInManager = signInManager;
             }
 
-            public async Task<AppUser> Handle(Query request, CancellationToken cancellationToken)
+            public async Task<User> Handle(Query request, CancellationToken cancellationToken)
             {
                 var user = await _userManager.FindByEmailAsync(request.Email);
 
@@ -52,7 +52,13 @@ namespace Application.User
                 if (result.Succeeded)
                 {
                     // todo: generate token
-                    return user;
+                    return new User
+                    {
+                        Username = user.UserName,
+                        Token = "this will be a token",
+                        DisplayName = user.DisplayName,
+                        Image = null
+                    };
                 }
 
                 throw new RestException(System.Net.HttpStatusCode.Unauthorized);
