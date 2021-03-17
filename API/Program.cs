@@ -33,7 +33,7 @@ namespace API
 
                     Seed.SeedData(context, userManager).Wait();
                 }
-                catch (Exception exception) 
+                catch (Exception exception)
                 {
                     var logger = services.GetRequiredService<ILogger<Program>>();
                     logger.LogError(exception, "An error occured during migration");
