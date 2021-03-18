@@ -8,3 +8,4 @@ appsettings.Development.json
 appsettings.json
 *.db
 debug.log
+API/appsettings.json
