@@ -4,8 +4,6 @@ bin
 obj
 .vscode
 .DS_Store
-appsettings.Development.json
-appsettings.json
 *.db
 debug.log
-API/appsettings.json
+API/appsettings.Production.json
