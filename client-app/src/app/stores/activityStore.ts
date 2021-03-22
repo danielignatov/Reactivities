@@ -3,10 +3,18 @@ import { createContext, SyntheticEvent } from 'react';
 import { toast } from 'react-toastify';
 import agent from '../api/agent';
 import { IActivity } from '../models/activity';
+import { RootStore } from './rootStore';
 
 configure({ enforceActions: 'always' });
 
-class ActivityStore {
+export default class ActivityStore {
+    rootStore: RootStore;
+
+    constructor(rootStore: RootStore) {
+        makeAutoObservable(this);
+        this.rootStore = rootStore;
+    }
+
     // Observables
     activityRegistry = new Map();
     activity: IActivity | null = null;
@@ -30,10 +38,6 @@ class ActivityStore {
 
             return activities;
         }, {} as {[key: string]: IActivity[]}));
-    }
-
-    constructor() {
-        makeAutoObservable(this)
     }
 
     @action loadActivities = async () => {
@@ -147,4 +151,4 @@ class ActivityStore {
     }
 }
 
-export default createContext(new ActivityStore())
+//export default createContext(new ActivityStore());
