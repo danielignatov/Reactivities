@@ -1,4 +1,5 @@
 import { action, computed, observable, runInAction } from "mobx";
+import { history } from "../..";
 import agent from "../api/agent";
 import { IUser, IUserFormValues } from "../models/user";
 import { RootStore } from "./rootStore";
@@ -17,15 +18,13 @@ export default class UserStore {
 
     @action login = async (values: IUserFormValues) => {
         try {
-            console.log('log something');
             const user = await agent.User.login(values);
             runInAction(() => {
                 this.user = user;
             })
-            
-            console.log(user);
+            history.push('/activities');
         } catch (error) {
-            console.log(error);
+            throw error;
         }
     }
 }
