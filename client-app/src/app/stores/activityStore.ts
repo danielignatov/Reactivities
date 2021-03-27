@@ -1,4 +1,4 @@
-import { action, computed, runInAction, observable } from 'mobx';
+import { action, computed, runInAction, observable, makeObservable } from 'mobx';
 import { SyntheticEvent } from 'react';
 import { toast } from 'react-toastify';
 import agent from '../api/agent';
@@ -10,6 +10,7 @@ export default class ActivityStore {
 
     constructor(rootStore: RootStore) {
         this.rootStore = rootStore;
+        makeObservable(this);
     }
 
     // Observables

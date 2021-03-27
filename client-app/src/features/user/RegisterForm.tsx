@@ -9,18 +9,20 @@ import { IUserFormValues } from '../../app/models/user';
 import { RootStoreContext } from '../../app/stores/rootStore';
 
 const validate = combineValidators({
+    username: isRequired('username'),
+    displayName: isRequired('displayName'),
     email: isRequired('email'),
     password: isRequired('password')
 })
 
-const LoginForm = () => {
+const RegisterForm = () => {
     const rootStore = useContext(RootStoreContext);
-    const { login } = rootStore.userStore;
+    const { register } = rootStore.userStore;
     const { closeModal } = rootStore.modalStore;
 
     return (
         <FinalForm 
-            onSubmit={(values: IUserFormValues) => login(values).then(closeModal).catch(error => ({
+            onSubmit={(values: IUserFormValues) => register(values).then(closeModal).catch(error => ({
                 [FORM_ERROR]: error
             }))}
             validate={validate}
@@ -28,9 +30,19 @@ const LoginForm = () => {
                 <Form error>
                     <Header 
                         as='h2' 
-                        content='Login to Reactivities' 
+                        content='Sign up to Reactivities' 
                         color='teal'
                         textAlign='center' />
+                    <Field
+                        name='username' 
+                        component={TextInput} 
+                        placeholder='Username'
+                    />
+                    <Field
+                        name='displayName' 
+                        component={TextInput} 
+                        placeholder='Display Name'
+                    />
                     <Field
                         name='email' 
                         component={TextInput} 
@@ -43,14 +55,14 @@ const LoginForm = () => {
                         type='password'
                     />
                     {submitError && !dirtySinceLastSubmit && (
-                        <ErrorMessage error={submitError} text='Invalid email or password' />
+                        <ErrorMessage error={submitError} />
                     )}
                     
                     <Button
                         disabled={(invalid && !dirtySinceLastSubmit) || pristine}
                         loading={submitting}
                         positive
-                        content='Login'
+                        content='Register'
                         onClick={handleSubmit}
                         fluid
                         color='teal'
@@ -62,4 +74,4 @@ const LoginForm = () => {
     )
 }
 
-export default LoginForm
+export default RegisterForm
