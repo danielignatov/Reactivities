@@ -13,14 +13,14 @@ namespace API.Controllers
     public class ActivitiesController : BaseController
     {
         [HttpGet]
-        public async Task<ActionResult<List<Activity>>> List(CancellationToken ct)
+        public async Task<ActionResult<List<ActivityDto>>> List(CancellationToken ct)
         {
             return await Mediator.Send(new List.Query(), ct);
         }
 
         [HttpGet("{id}")]
         [Authorize]
-        public async Task<ActionResult<Activity>> Details(Guid id, CancellationToken ct)
+        public async Task<ActionResult<ActivityDto>> Details(Guid id, CancellationToken ct)
         {
             return await Mediator.Send(new Details.Query { Id = id }, ct);
         }
@@ -42,6 +42,12 @@ namespace API.Controllers
         public async Task<ActionResult<Unit>> Delete(Guid id)
         {
             return await Mediator.Send(new Delete.Command { Id = id });
+        }
+
+        [HttpPost("{id}/attend")]
+        public async Task<ActionResult<Unit>> Attend(Guid id)
+        {
+            return await Mediator.Send(new Attend.Command{Id = id});
         }
     }
 }
