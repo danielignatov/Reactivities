@@ -1,3 +1,6 @@
+import { IActivity } from "../../models/activity";
+import { IUser } from "../../models/user";
+
 export const combineDateAndTime = (date: Date, time: Date) => {
     const timeString = time.getHours() + ':' + time.getMinutes() + ':00';
     const year = date.getFullYear();
@@ -6,4 +9,15 @@ export const combineDateAndTime = (date: Date, time: Date) => {
     const dateString = `${year}-${month}-${day}`;
 
     return new Date(dateString + ' ' + timeString);
+}
+
+export const setActivityProps = (activity: IActivity, user: IUser) => {
+    activity.isGoing = activity.attendees.some(
+        a => a.username === user.username
+    );
+    activity.isHost = activity.attendees.some(
+        a => a.username === user.username && a.isHost
+    );
+    activity.date = new Date(activity.date);
+    return activity;
 }
