@@ -6,4 +6,5 @@ obj
 .DS_Store
 *.db
 debug.log
+API/appsettings.Development.json
 API/appsettings.Production.json
