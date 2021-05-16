@@ -9,7 +9,7 @@ namespace API.Controllers
     {
         [AllowAnonymous]
         [HttpPost("login")]
-        public async Task<ActionResult<User>> Login(Login.Query query) 
+        public async Task<ActionResult<User>> Login(Login.Query query)
         {
             return await Mediator.Send(query);
         }

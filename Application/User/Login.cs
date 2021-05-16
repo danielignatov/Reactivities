@@ -7,6 +7,8 @@ using FluentValidation;
 using MediatR;
 using Microsoft.AspNetCore.Identity;
 using Persistence;
+using System.Linq;
+using Microsoft.EntityFrameworkCore;
 
 namespace Application.User
 {
@@ -46,7 +48,9 @@ namespace Application.User
 
             public async Task<User> Handle(Query request, CancellationToken cancellationToken)
             {
-                var user = await _userManager.FindByEmailAsync(request.Email);
+                var user = await _userManager.Users
+                .Include(x => x.Images)
+                .SingleOrDefaultAsync(x => x.NormalizedEmail == request.Email.ToUpper());;
 
                 if (user == null)
                     throw new RestException(System.Net.HttpStatusCode.Unauthorized);
@@ -55,13 +59,12 @@ namespace Application.User
 
                 if (result.Succeeded)
                 {
-                    // todo: generate token
                     return new User
                     {
                         Username = user.UserName,
                         Token = _jwtGenerator.CreateToken(user),
                         DisplayName = user.DisplayName,
-                        Image = null
+                        Image = user?.Images.FirstOrDefault(x => x.IsMain)?.Url
                     };
                 }
 

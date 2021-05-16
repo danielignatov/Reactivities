@@ -33,6 +33,7 @@ namespace Application.Activities
                 await _context.Activities
                 .Include(x => x.UserActivities)
                 .ThenInclude(x => x.AppUser)
+                .ThenInclude(x => x.Images)
                 .ToListAsync(cancellationToken);
 
                 return _mapper.Map<List<Activity>, List<ActivityDto>>(activities);

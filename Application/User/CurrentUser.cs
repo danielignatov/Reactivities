@@ -1,9 +1,11 @@
+using System.Linq;
 using System.Threading;
 using System.Threading.Tasks;
 using Application.Interfaces;
 using Domain;
 using MediatR;
 using Microsoft.AspNetCore.Identity;
+using Microsoft.EntityFrameworkCore;
 using Persistence;
 
 namespace Application.User
@@ -32,14 +34,16 @@ namespace Application.User
 
             public async Task<User> Handle(Query request, CancellationToken cancellationToken)
             {
-                var user = await _userManager.FindByNameAsync(_userAccessor.GetCurrentUsername());
+                var user = await _userManager.Users
+                .Include(x => x.Images)
+                .SingleOrDefaultAsync(x => x.UserName == _userAccessor.GetCurrentUsername());
 
                 return new User
                 {
                     DisplayName = user.DisplayName,
                     Username = user.UserName,
                     Token = _jwtGenerator.CreateToken(user),
-                    Image = null
+                    Image = user.Images.FirstOrDefault(x => x.IsMain)?.Url
                 };
             }
         }
