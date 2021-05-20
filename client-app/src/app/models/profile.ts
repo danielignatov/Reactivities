@@ -3,7 +3,7 @@ export interface IProfile {
     username: string,
     bio: string,
     image: string,
-    //images: IImage[]
+    images: IImage[]
 }
 
 export interface IImage {
