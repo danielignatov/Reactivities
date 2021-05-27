@@ -6,8 +6,15 @@ import { RootStoreContext } from '../../app/stores/rootStore';
 
 const ProfilePhotos = () => {
     const rootStore = useContext(RootStoreContext);
-    const { profile, isCurrentUser } = rootStore.profileStore;
-    const [addPhotoMode, setAddPhotoMode] = useState(true);
+    const { profile, isCurrentUser, uploadImage, uploadingImage, setMainImage, loading, deleteImage } = rootStore.profileStore;
+    const [addPhotoMode, setAddPhotoMode] = useState(false);
+
+    const [target, setTarget] = useState<string | undefined>(undefined);
+    const [deleteTarget, setDeleteTarget] = useState<string | undefined>(undefined);
+
+    const handleUploadImage = (image: Blob) => {
+        uploadImage(image).then(() => setAddPhotoMode(false));
+    }
 
     return (
         <Tab.Pane>
@@ -20,7 +27,7 @@ const ProfilePhotos = () => {
                 </Grid.Column>
                 <Grid.Column width={16}>
                     {addPhotoMode ? (
-                        <ImageUploadWidget />
+                        <ImageUploadWidget uploadImage={handleUploadImage} loading={uploadingImage} />
                     ) : (
                         <Card.Group itemsPerRow={5}>
                             {profile && profile.images.map((image) => (
@@ -28,8 +35,30 @@ const ProfilePhotos = () => {
                                     <Image src={image.url} />
                                     {isCurrentUser && 
                                     <Button.Group fluid widths={2}>
-                                        <Button basic positive content='Main' />
-                                        <Button basic negative icon='trash' />
+                                        <Button 
+                                        name={image.id}
+                                        basic 
+                                        positive 
+                                        content='Main' 
+                                        onClick={(event) => {
+                                            setMainImage(image);
+                                            setTarget(event.currentTarget.name);
+                                        }} 
+                                        loading={loading && target === image.id } 
+                                        disabled={image.isMain}
+                                        />
+                                        <Button 
+                                        name={image.id}
+                                        basic 
+                                        negative 
+                                        icon='trash' 
+                                        onClick={(event) => {
+                                            deleteImage(image);
+                                            setDeleteTarget(event.currentTarget.name);
+                                        }} 
+                                        loading={loading && deleteTarget === image.id } 
+                                        disabled={image.isMain}
+                                        />
                                     </Button.Group>
                                     }
                                 </Card>
