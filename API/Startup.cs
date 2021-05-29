@@ -74,8 +74,13 @@ namespace API
                 {
                     policy.Requirements.Add(new IsHostRequirement());
                 });
+                opt.AddPolicy("IsCurrentUser", policy =>
+                {
+                    policy.Requirements.Add(new IsImageUploaderRequirement());
+                });
             });
             services.AddTransient<IAuthorizationHandler, IsHostRequirementHandler>();
+            services.AddTransient<IAuthorizationHandler, IsImageUploaderRequirementHandler>();
 
             var key = new SymmetricSecurityKey(Encoding.UTF8.GetBytes(Configuration["TokenKey"]));
             services.AddAuthentication(JwtBearerDefaults.AuthenticationScheme)

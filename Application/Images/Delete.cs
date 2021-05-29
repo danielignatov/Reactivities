@@ -3,6 +3,7 @@ using System.Linq;
 using System.Net;
 using System.Threading;
 using System.Threading.Tasks;
+using Application.Enums;
 using Application.Errors;
 using Application.Interfaces;
 using MediatR;
@@ -45,12 +46,12 @@ namespace Application.Images
 
                 var result = _imageAccessor.DeleteImage(request.Id);
 
-                if (result == null)
+                if (result == ImageDeleteResult.Error)
                     throw new Exception("Problem deleting the image");
 
-                var success = await _context.SaveChangesAsync() > 0;
-
                 user.Images.Remove(image);
+
+                var success = await _context.SaveChangesAsync() > 0;
 
                 if (success) return Unit.Value;
 

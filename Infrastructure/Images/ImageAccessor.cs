@@ -1,4 +1,5 @@
 using System;
+using Application.Enums;
 using Application.Interfaces;
 using CloudinaryDotNet;
 using CloudinaryDotNet.Actions;
@@ -52,13 +53,21 @@ namespace Infrastructure.Images
             };
         }
 
-        public string DeleteImage(string publicId)
+        public ImageDeleteResult DeleteImage(string publicId)
         {
             var deleteParams = new DeletionParams(publicId);
 
             var result = _cloudinary.Destroy(deleteParams);
 
-            return result.Result == "ok" ? result.Result : null;
+            switch (result.Result)
+            {
+                case "ok":
+                    return ImageDeleteResult.Ok;
+                case "not found":
+                    return ImageDeleteResult.NotFound;
+                default:
+                    return ImageDeleteResult.Error;
+            }
         }
     }
 }

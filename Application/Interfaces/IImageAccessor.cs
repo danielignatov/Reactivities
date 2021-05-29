@@ -1,3 +1,4 @@
+using Application.Enums;
 using Application.Images;
 using Microsoft.AspNetCore.Http;
 
@@ -7,6 +8,6 @@ namespace Application.Interfaces
     {
          ImageUploadResult AddImage(IFormFile file);
 
-         string DeleteImage(string publicId);
+         ImageDeleteResult DeleteImage(string publicId);
     }
 }
