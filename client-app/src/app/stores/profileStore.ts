@@ -14,6 +14,7 @@ export default class ProfileStore {
     @observable profile: IProfile | null = null;
     @observable loadingProfile: boolean = false;
     @observable uploadingImage: boolean = false;
+    @observable submitting: boolean = false;
     @observable loading: boolean = false;
 
     @computed get isCurrentUser() {
@@ -33,6 +34,7 @@ export default class ProfileStore {
                 this.profile = profile;
                 this.loadingProfile = false;
             })
+            return profile;
         } catch (error) {
             runInAction(() => {
                 this.loadingProfile = false;
@@ -97,6 +99,25 @@ export default class ProfileStore {
             runInAction(() => {
                 this.loading = false;
             });
+        }
+    }
+
+    @action editProfile = async (profile: Partial<IProfile>) => {
+        this.submitting = true;
+        try {
+            await agent.Profiles.update(profile);
+            runInAction(() => {
+                this.rootStore.userStore.user!.displayName = profile.displayName!;
+                this.profile!.displayName = profile.displayName!;
+                this.profile!.bio = profile.bio!;
+                this.submitting = false;
+            });
+        } catch (error) {
+            runInAction(() => {
+                this.submitting = false;
+            });
+            toast.error('Problem submitting data');
+            console.error(error);
         }
     }
 }
