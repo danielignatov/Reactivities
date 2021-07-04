@@ -7,9 +7,9 @@ import TextAreaInput from '../../../app/common/form/TextAreaInput';
 import { combineValidators, composeValidators, hasLengthLessThan, isRequired } from 'revalidate';
 
 const validate = combineValidators({
-    displayName: isRequired({message: 'The display name is required'}),
+    displayName: isRequired({ message: 'The display name is required' }),
     bio: composeValidators(
-        hasLengthLessThan(2000)({message: 'Bio has to be 2000 or less characters'})
+        hasLengthLessThan(2000)({ message: 'Bio has to be 2000 or less characters' })
     )(),
 })
 
@@ -21,7 +21,7 @@ interface IProps {
 const ProfileAboutForm: React.FC<IProps> = ({ profile, editProfile }) => {
     return (
         <Grid>
-            <Grid.Column width={10}>
+            <Grid.Column width={16}>
                 <Segment clearing>
                     <FinalForm
                         validate={validate}
@@ -40,13 +40,13 @@ const ProfileAboutForm: React.FC<IProps> = ({ profile, editProfile }) => {
                                     rows={3}
                                     placeholder='Bio'
                                     value={profile!.bio} />
-                                
-                                <Button 
-                                disabled={submitting || invalid || pristine} 
-                                loading={submitting} 
-                                floated='right' 
-                                positive type='submit' 
-                                content='Submit' />
+
+                                <Button
+                                    disabled={submitting || invalid || pristine}
+                                    loading={submitting}
+                                    floated='right'
+                                    positive type='submit'
+                                    content='Submit' />
                             </Form>
                         )}
                     />
