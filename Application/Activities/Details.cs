@@ -35,6 +35,7 @@ namespace Application.Activities
                 await _context.Activities
                 .Include(x => x.UserActivities)
                 .ThenInclude(x => x.AppUser)
+                .Include(x => x.Comments)
                 .SingleOrDefaultAsync(x => x.Id == request.Id);
 
                 if (activity == null)

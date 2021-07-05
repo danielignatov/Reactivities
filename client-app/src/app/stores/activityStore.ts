@@ -1,3 +1,4 @@
+import { HubConnection, HubConnectionBuilder, LogLevel } from '@microsoft/signalr';
 import { action, computed, runInAction, observable, makeObservable } from 'mobx';
 import { SyntheticEvent } from 'react';
 import { toast } from 'react-toastify';
@@ -21,6 +22,25 @@ export default class ActivityStore {
     @observable submitting: boolean = false;
     @observable target: string = '';
     @observable loading: boolean = false;
+    @observable.ref hubConnection: HubConnection | null = null;
+
+    @action createHubConnection = () => {
+        this.hubConnection = new HubConnectionBuilder().withUrl('http://localhost:5000/chat', {
+            accessTokenFactory: () => this.rootStore.commonStore.token!
+        })
+        .configureLogging(LogLevel.Information)
+        .build();
+
+        this.hubConnection.start().then(() => console.log(this.hubConnection!.state)).catch(error => console.log('Error establish connection: ', error));
+
+        this.hubConnection.on('ReceiveComment', comment => {
+            this.activity!.comments.push(comment);
+        })
+    }
+
+    @action stopHubConnection = () => {
+        this.hubConnection!.stop();
+    }
 
     @computed get activitiesByDate() {
         return this.groupActivitiesByDate(Array.from(this.activityRegistry.values()));
