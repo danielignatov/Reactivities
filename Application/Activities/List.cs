@@ -31,6 +31,9 @@ namespace Application.Activities
             {
                 var activities =
                 await _context.Activities
+                .Include(x => x.Comments)
+                .ThenInclude(x => x.Author)
+                .ThenInclude(x => x.Images)
                 .Include(x => x.UserActivities)
                 .ThenInclude(x => x.AppUser)
                 .ThenInclude(x => x.Images)

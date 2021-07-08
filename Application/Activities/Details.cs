@@ -35,7 +35,10 @@ namespace Application.Activities
                 await _context.Activities
                 .Include(x => x.UserActivities)
                 .ThenInclude(x => x.AppUser)
+                .ThenInclude(x => x.Images)
                 .Include(x => x.Comments)
+                .ThenInclude(x => x.Author)
+                .ThenInclude(x => x.Images)
                 .SingleOrDefaultAsync(x => x.Id == request.Id);
 
                 if (activity == null)
