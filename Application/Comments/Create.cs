@@ -16,6 +16,8 @@ namespace Application.Comments
     {
         public class Command : IRequest<CommentDto>
         {
+            public DateTime CreatedAt { get; set; }
+
             public string Body { get; set; }
 
             public Guid ActivityId { get; set; }
@@ -57,6 +59,7 @@ namespace Application.Comments
 
                 var comment = new Comment
                 {
+                    CreatedAt = request.CreatedAt,
                     Author = user,
                     Activity = activity,
                     Body = request.Body

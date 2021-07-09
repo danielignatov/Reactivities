@@ -1,3 +1,5 @@
+import { IComment } from "./comment";
+
 export interface IActivity {
     id: string;
     title: string;
@@ -10,15 +12,6 @@ export interface IActivity {
     isHost: boolean;
     attendees: IAttendee[];
     comments: IComment[];
-}
-
-export interface IComment {
-    id: string;
-    createdAt: Date;
-    body: string;
-    username: string;
-    displayName: string;
-    image: string;
 }
 
 export interface IActivityFormValues extends Partial<IActivity> {

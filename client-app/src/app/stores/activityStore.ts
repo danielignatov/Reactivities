@@ -70,6 +70,7 @@ export default class ActivityStore {
     @action addComment = async (values: any) => {
         values.activityId = this.activity!.id;
         values.createdAt = new Date();
+        values.image = this.rootStore.userStore.user!.image;
         try {
             await this.hubConnection!.invoke('SendComment', values);
         } catch (error) {
