@@ -1,5 +1,4 @@
 using System;
-using System.Linq;
 using System.Net;
 using System.Threading;
 using System.Threading.Tasks;
@@ -58,7 +57,6 @@ namespace Application.Profiles
 
                 throw new Exception("Problem saving changes");
             }
-
         }
     }
 }

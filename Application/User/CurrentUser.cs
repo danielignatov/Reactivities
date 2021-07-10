@@ -6,7 +6,6 @@ using Domain;
 using MediatR;
 using Microsoft.AspNetCore.Identity;
 using Microsoft.EntityFrameworkCore;
-using Persistence;
 
 namespace Application.User
 {
