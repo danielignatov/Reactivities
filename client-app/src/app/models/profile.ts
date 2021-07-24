@@ -15,6 +15,13 @@ export interface IImage {
     isMain: boolean
 }
 
+export interface IUserActivity {
+    id: string,
+    title: string;
+    category: string;
+    date: Date;
+}
+
 export interface IProfileFormValues extends Partial<IProfile> {
 
 }
