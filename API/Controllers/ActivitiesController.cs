@@ -18,10 +18,13 @@ namespace API.Controllers
         [HttpGet]
         public async Task<ActionResult<List.ActivitiesEnvelope>> List(
             CancellationToken ct, 
+            DateTime? startDate,
             int limit = DefaultLimit, 
-            int offset = DefaultOffset)
+            int offset = DefaultOffset,
+            bool isGoing = false,
+            bool isHost = false)
         {
-            return await Mediator.Send(new List.Query(limit, offset), ct);
+            return await Mediator.Send(new List.Query(limit, offset, isGoing, isHost, startDate), ct);
         }
 
         [HttpGet("{id}")]
