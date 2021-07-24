@@ -14,7 +14,7 @@ namespace Infrastructure.Security
         private readonly DataContext _context;
 
         private readonly IHttpContextAccessor _httpContextAccessor;
-        
+
         public UserAccessor(DataContext context, IHttpContextAccessor httpContextAccessor)
         {
             _context = context;
@@ -40,7 +40,12 @@ namespace Infrastructure.Security
             if (string.IsNullOrEmpty(username))
                 return null;
 
-            var user = await _context.Users.Include(x => x.Images).SingleOrDefaultAsync(x => x.UserName == username);
+            var user =
+            await _context.Users
+            .Include(x => x.Images)
+            .Include(x => x.Followers)
+            .Include(x => x.Following)
+            .SingleOrDefaultAsync(x => x.UserName == username);
 
             return user;
         }

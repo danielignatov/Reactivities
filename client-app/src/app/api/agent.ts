@@ -81,6 +81,9 @@ const Profiles = {
     uploadImage: (image: Blob): Promise<IImage> => requests.postForm(`/images`, image),
     setMainImage: (id: string) => requests.post(`/images/${id}/setMain`, {}),
     deleteImage: (id: string) => requests.del(`/images/${id}`),
+    follow: (username: string) => requests.post(`/profiles/${username}/follow`, {}),
+    unfollow: (username: string) => requests.del(`/profiles/${username}/unfollow`),
+    listFollowings: (username: string, predicate: string) => requests.get(`/profiles/${username}/follow?predicate=${predicate}`)
 }
 
 const agent = {
