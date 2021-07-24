@@ -7,6 +7,8 @@ import { createAttendee, setActivityProps } from '../common/util/util';
 import { IActivity } from '../models/activity';
 import { RootStore } from './rootStore';
 
+const LIMIT = 2;
+
 export default class ActivityStore {
     rootStore: RootStore;
 
@@ -23,6 +25,16 @@ export default class ActivityStore {
     @observable target: string = '';
     @observable loading: boolean = false;
     @observable.ref hubConnection: HubConnection | null = null;
+    @observable activityCount: number = 0;
+    @observable page: number = 0;
+
+    @computed get totalPages() {
+        return Math.ceil(this.activityCount / LIMIT);
+    }
+
+    @action setPage = (page: number) => {
+        this.page = page;
+    }
 
     @action createHubConnection = (activityId: string) => {
         this.hubConnection = new HubConnectionBuilder().withUrl('http://localhost:5000/chat', {
@@ -100,12 +112,14 @@ export default class ActivityStore {
         this.loadingInitial = true;
 
         try {
-            const activities = await agent.Activities.list();
+            const activitiesEnvelope = await agent.Activities.list(LIMIT, this.page);
+            const { activities, activityCount } = activitiesEnvelope;
             runInAction(() => {
                 activities.forEach((activity) => {
                     setActivityProps(activity, this.rootStore.userStore.user!);
                     this.activityRegistry.set(activity.id, activity);
                 });
+                this.activityCount = activityCount;
             });
             //console.log(this.groupActivitiesByDate(activities));
         } catch (error) {

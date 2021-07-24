@@ -12,10 +12,16 @@ namespace API.Controllers
 {
     public class ActivitiesController : BaseController
     {
+        protected const int DefaultLimit = 25;
+        protected const int DefaultOffset = 0;
+
         [HttpGet]
-        public async Task<ActionResult<List<ActivityDto>>> List(CancellationToken ct)
+        public async Task<ActionResult<List.ActivitiesEnvelope>> List(
+            CancellationToken ct, 
+            int limit = DefaultLimit, 
+            int offset = DefaultOffset)
         {
-            return await Mediator.Send(new List.Query(), ct);
+            return await Mediator.Send(new List.Query(limit, offset), ct);
         }
 
         [HttpGet("{id}")]
