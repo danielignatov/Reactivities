@@ -1,5 +1,5 @@
 import { HubConnection, HubConnectionBuilder, LogLevel } from '@microsoft/signalr';
-import { action, computed, runInAction, observable, makeObservable, reaction } from 'mobx';
+import { action, computed, runInAction, observable, makeObservable, reaction, toJS } from 'mobx';
 import { SyntheticEvent } from 'react';
 import { toast } from 'react-toastify';
 import agent from '../api/agent';
@@ -169,7 +169,7 @@ export default class ActivityStore {
 
         if (activity) {
             this.activity = activity;
-            return activity;
+            return toJS(activity);
         } else {
             this.loadingInitial = true;
 

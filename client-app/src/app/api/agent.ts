@@ -11,7 +11,7 @@ axios.interceptors.request.use((config: AxiosRequestConfig) => {
     const token = window.localStorage.getItem('jwt');
 
     if (token) config.headers.Authorization = `Bearer ${token}`;
-    
+
     return config;
 }, error => {
     return Promise.reject(error);
@@ -22,10 +22,16 @@ axios.interceptors.response.use(undefined, error => {
         toast.error('No connection to the server!');
     }
 
-    const {status, data, config} = error.response;
+    const { status, data, config, headers } = error.response;
 
-    if (status === 404){
+    if (status === 404) {
         history.push('/notfound');
+    }
+
+    if (status === 401 && headers['www-authenticate'].includes('The token expired')) {
+        window.localStorage.removeItem('jwt');
+        history.push('/');
+        toast.info('Your session has expired, please login again.');
     }
 
     if (status === 400 && config.method === 'get' && data.errors.hasOwnProperty('id')) {
@@ -33,7 +39,7 @@ axios.interceptors.response.use(undefined, error => {
     }
 
     if (status === 500) {
-        toast.error('Server error!')
+        toast.error('Server error!');
     }
 
     throw error.response;
@@ -54,13 +60,13 @@ const requests = {
         let formData = new FormData();
         formData.append('File', file);
         return axios.post(url, formData, {
-            headers: {'Content-type': 'multipart/form-data'}
+            headers: { 'Content-type': 'multipart/form-data' }
         }).then(responseBody);
     }
 }
 
 const Activities = {
-    list: (params: URLSearchParams): Promise<IActivitiesEnvelope> => axios.get(`/activities`, {params}).then(responseBody),
+    list: (params: URLSearchParams): Promise<IActivitiesEnvelope> => axios.get(`/activities`, { params }).then(responseBody),
     details: (id: string) => requests.get(`/activities/${id}`),
     create: (activity: IActivity) => requests.post('/activities', activity),
     update: (activity: IActivity) => requests.put(`/activities/${activity.id}`, activity),
@@ -92,5 +98,5 @@ const agent = {
     User,
     Profiles
 }
- 
+
 export default agent;
