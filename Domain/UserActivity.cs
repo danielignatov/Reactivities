@@ -1,4 +1,5 @@
 using System;
+using System.ComponentModel.DataAnnotations;
 
 namespace Domain
 {
@@ -8,6 +9,7 @@ namespace Domain
 
         public AppUser AppUser { get; set; }
 
+        [MaxLength(255)]
         public Guid ActivityId { get; set; }
 
         public Activity Activity { get; set; }

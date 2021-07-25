@@ -9,3 +9,4 @@ debug.log
 API/appsettings.Development.json
 API/appsettings.Production.json
 client-app/.eslintcache
+wwwroot
