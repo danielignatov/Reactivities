@@ -10,6 +10,7 @@ import reportWebVitals from './reportWebVitals';
 import 'semantic-ui-css/semantic.min.css';
 import ScrollToTop from './app/layout/ScrollToTop';
 import dateFnsLocalizer from 'react-widgets-date-fns';
+import './app/common/util/i18n';
 
 dateFnsLocalizer();
 

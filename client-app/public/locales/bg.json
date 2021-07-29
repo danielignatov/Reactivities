@@ -1,0 +1,28 @@
+{
+    "activity": {
+        "hostedbyyou": "Вие сте домакин",
+        "youaregoing": "Вие ще присъствате",
+        "hostedby": "Домакин"
+    },
+    "common": {
+        "activity": "Събитие",
+        "activities": "Събития",
+        "view": "Преглед"
+    },
+    "loading": {
+        "app": "Зарежда се..."
+    },
+    "error": {
+        "notfound": "Упс - съдържанието не е намерено."
+    },
+    "button": {
+        "myprofile": "Моят профил",
+        "logout": "Изход",
+        "create": {
+            "activity": "Създай събитие"
+        },
+        "back": {
+            "toallactivities": "Върни се към всички събития"
+        }
+    }
+}

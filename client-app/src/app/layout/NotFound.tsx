@@ -1,17 +1,20 @@
 import React from 'react';
 import { Segment, Button, Header, Icon } from 'semantic-ui-react';
 import { Link } from 'react-router-dom';
+import { useTranslation } from 'react-i18next';
 
 const NotFound = () => {
+    const { t } = useTranslation();
+
     return (
         <Segment placeholder>
             <Header icon>
                 <Icon name='search' />
-                Oops - we've looked everywhere but couldn't find this.
+                {t('error.notfound')}
             </Header>
             <Segment.Inline>
                 <Button as={Link} to='/activities' primary>
-                    Return to Activities page
+                {t('button.back.toallactivities')}
                 </Button>
             </Segment.Inline>
         </Segment>

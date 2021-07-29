@@ -1,0 +1,28 @@
+{
+    "activity": {
+        "hostedbyyou": "You are hosting this activity",
+        "youaregoing": "You are going to this activity",
+        "hostedby": "Hosted by"
+    },
+    "common": {
+        "activity": "Activity",
+        "activities": "Activities",
+        "view": "View"
+    },
+    "loading": {
+        "app": "Loading app..."
+    },
+    "error": {
+        "notfound": "Oops - we've looked everywhere but couldn't find this."
+    },
+    "button": {
+        "myprofile": "My profile",
+        "logout": "Logout",
+        "create": {
+            "activity": "Create Activity"
+        },
+        "back": {
+            "toallactivities": "Return to Activities page"
+        }
+    }
+}

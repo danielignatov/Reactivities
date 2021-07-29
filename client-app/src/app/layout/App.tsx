@@ -15,8 +15,10 @@ import LoadingComponent from './LoadingComponent';
 import ModalContainer from '../common/modals/ModalContainer';
 import ProfilePage from '../../features/profiles/ProfilePage';
 import PrivateRoute from './PrivateRoute';
+import { useTranslation } from 'react-i18next';
 
 const App: React.FC<RouteComponentProps> = ({ location }) => {
+  const { t } = useTranslation();
   const rootStore = useContext(RootStoreContext);
   const { appLoaded, setAppLoaded, token } = rootStore.commonStore;
   const { getUser } = rootStore.userStore;
@@ -30,7 +32,7 @@ const App: React.FC<RouteComponentProps> = ({ location }) => {
   }, [getUser, setAppLoaded, token])
 
   if (!appLoaded)  {
-    return <LoadingComponent content='Loading app...' />
+    return <LoadingComponent content={t('loading.app')} />
   }
   
   return (
