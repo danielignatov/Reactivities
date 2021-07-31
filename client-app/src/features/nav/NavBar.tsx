@@ -15,13 +15,13 @@ const NavBar: React.FC = () => {
             <Container>
                 <Menu.Item header as={NavLink} exact to='/'>
                     <img src="/assets/logo.png" alt="logo" style={{ marginRight: '10px' }} />
-                Reactivities
+                {t('common.sitename')}
             </Menu.Item>
                 <Menu.Item as={NavLink} exact to='/activities'
                     name={t('common.activities')}
                 />
                 <Menu.Item>
-                    <Button as={NavLink} to='/createActivity' positive content={t('button.create.activity')} />
+                    <Button as={NavLink} to='/createActivity' positive content={t('nav.navbar.createactivitybtn')} />
                 </Menu.Item>
                 { user && (
                             <Menu.Item position='right'>
@@ -30,8 +30,8 @@ const NavBar: React.FC = () => {
                                 <Dropdown.Menu>
                                   <Dropdown.Item 
                                     as={Link} 
-                                    to={`/profile/${user.username}`} text={t('button.myprofile')} icon='user'/>
-                                  <Dropdown.Item onClick={logout} text={t('button.logout')} icon='power' />
+                                    to={`/profile/${user.username}`} text={t('nav.navbar.myprofilebtn')} icon='user'/>
+                                  <Dropdown.Item onClick={logout} text={t('nav.navbar.logoutbtn')} icon='power' />
                                 </Dropdown.Menu>
                               </Dropdown>
                             </Menu.Item>

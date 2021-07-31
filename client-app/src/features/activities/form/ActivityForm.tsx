@@ -14,6 +14,7 @@ import DateInput from '../../../app/common/form/DateInput';
 import { combineDateAndTime } from '../../../app/common/util/util';
 import { combineValidators, composeValidators, hasLengthGreaterThan, isRequired } from 'revalidate';
 import { RootStoreContext } from '../../../app/stores/rootStore';
+import { useTranslation } from 'react-i18next';
 
 const validate = combineValidators({
     title: isRequired({message: 'The event title is required'}),
@@ -33,6 +34,7 @@ interface DetailParams {
 }
 
 const ActivityForm: React.FC<RouteComponentProps<DetailParams>> = ({ match, history }) => {
+    const { t } = useTranslation();
     const rootStore = useContext(RootStoreContext);
     const {
         createActivity,
@@ -82,50 +84,50 @@ const ActivityForm: React.FC<RouteComponentProps<DetailParams>> = ({ match, hist
                                 <Field
                                     component={TextInput}
                                     name='title'
-                                    placeholder='Title'
+                                    placeholder={t('activities.form.activityform.title')}
                                     value={activity.title} />
                                 <Field
                                     component={TextAreaInput}
                                     name='description'
                                     rows={3}
-                                    placeholder='Description'
+                                    placeholder={t('activities.form.activityform.desc')}
                                     value={activity.description} />
                                 <Field
                                     component={SelectInput}
                                     options={category}
                                     name='category'
-                                    placeholder='Category'
+                                    placeholder={t('activities.form.activityform.category')}
                                     value={activity.category} />
                                 <Form.Group widths='equal'>
                                     <Field
                                         component={DateInput}
                                         name='date'
                                         date={true}
-                                        placeholder='Date'
+                                        placeholder={t('activities.form.activityform.date')}
                                         value={activity.date} />
                                     <Field
                                         component={DateInput}
                                         name='time'
                                         time={true}
-                                        placeholder='Time'
+                                        placeholder={t('activities.form.activityform.time')}
                                         value={activity.time} />
                                 </Form.Group>
                                 <Field
                                     component={TextInput}
                                     name='city'
-                                    placeholder='City'
+                                    placeholder={t('activities.form.activityform.city')}
                                     value={activity.city} />
                                 <Field
                                     component={TextInput}
                                     name='venue'
-                                    placeholder='Venue'
+                                    placeholder={t('activities.form.activityform.venue')}
                                     value={activity.venue} />
                                 <Button 
                                 disabled={loading || invalid || pristine} 
                                 loading={submitting} 
                                 floated='right' 
                                 positive type='submit' 
-                                content='Submit' />
+                                content={t('activities.form.activityform.submit')} />
                                 <Button 
                                 disabled={loading} 
                                 onClick={e => {
@@ -136,7 +138,7 @@ const ActivityForm: React.FC<RouteComponentProps<DetailParams>> = ({ match, hist
                                   }}
                                 floated='right' 
                                 type='text' 
-                                content='Cancel' />
+                                content={t('common.cancel')} />
                             </Form>
                         )}
                     />

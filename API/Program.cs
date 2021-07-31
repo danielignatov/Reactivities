@@ -47,7 +47,11 @@ namespace API
             Host.CreateDefaultBuilder(args)
                 .ConfigureWebHostDefaults(webBuilder =>
                 {
-                    webBuilder.UseStartup<Startup>();
+                    webBuilder
+                    .ConfigureKestrel(serverOptions => {
+                        serverOptions.Listen(System.Net.IPAddress.Loopback, 5000);
+                    })
+                    .UseStartup<Startup>();
                 });
     }
 }

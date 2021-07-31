@@ -5,6 +5,7 @@ import { Button, Header, Item, Segment, Image } from 'semantic-ui-react';
 import { IActivity } from '../../../app/models/activity';
 import { format } from 'date-fns';
 import { RootStoreContext } from '../../../app/stores/rootStore';
+import { useTranslation } from 'react-i18next';
 
 const activityImageStyle = {
     filter: 'brightness(30%)'
@@ -20,6 +21,7 @@ const activityImageTextStyle = {
 };
 
 const ActivityDetailedHeader: React.FC<{ activity: IActivity }> = ({ activity }) => {
+    const { t } = useTranslation();
     const rootStore = useContext(RootStoreContext);
     const { attendActivity, cancelAttendance, loading } = rootStore.activityStore;
     const host = activity.attendees.filter(x => x.isHost)[0];
@@ -38,7 +40,7 @@ const ActivityDetailedHeader: React.FC<{ activity: IActivity }> = ({ activity })
                                 />
                                 <p>{format(activity.date, 'eeee do MMMM')}</p>
                                 <p>
-                                    Hosted by <Link to={`/profile/${host.username}`}><strong>{host.displayName}</strong></Link>
+                                    {t('activities.details.activitydetailedheader.hostedby')} <Link to={`/profile/${host.username}`}><strong>{host.displayName}</strong></Link>
                                 </p>
                             </Item.Content>
                         </Item>
@@ -48,12 +50,12 @@ const ActivityDetailedHeader: React.FC<{ activity: IActivity }> = ({ activity })
             <Segment clearing attached='bottom'>
                 {activity.isHost ? (
                     <Button as={Link} to={`/manage/${activity.id}`} color='orange' floated='right'>
-                        Manage Event
+                        {t('activities.details.activitydetailedheader.manageevent')}
                     </Button>
                 ) : activity.isGoing ? (
-                    <Button loading={loading} onClick={cancelAttendance}>Cancel attendance</Button>
+                    <Button loading={loading} onClick={cancelAttendance}>{t('activities.details.activitydetailedheader.cancelattendance')}</Button>
                 ) : (
-                    <Button loading={loading} onClick={attendActivity} color='teal'>Join Activity</Button>
+                    <Button loading={loading} onClick={attendActivity} color='teal'>{t('activities.details.activitydetailedheader.joinactivity')}</Button>
                 )}
             </Segment>
         </Segment.Group>

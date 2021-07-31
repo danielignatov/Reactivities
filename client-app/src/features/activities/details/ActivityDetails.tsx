@@ -1,5 +1,6 @@
 import { observer } from 'mobx-react-lite';
 import React, { useContext, useEffect } from 'react';
+import { useTranslation } from 'react-i18next';
 import { RouteComponentProps } from 'react-router-dom';
 import { Grid } from 'semantic-ui-react';
 import LoadingComponent from '../../../app/layout/LoadingComponent';
@@ -14,6 +15,7 @@ interface DetailParams {
 }
 
 const ActivityDetails: React.FC<RouteComponentProps<DetailParams>> = ({ match, history }) => {
+    const { t } = useTranslation();
     const rootStore = useContext(RootStoreContext);
     const { activity, loadActivity, loadingInitial } = rootStore.activityStore;
 
@@ -21,10 +23,10 @@ const ActivityDetails: React.FC<RouteComponentProps<DetailParams>> = ({ match, h
         loadActivity(match.params.id);
     }, [loadActivity, match.params.id, history]);
 
-    if (loadingInitial) return <LoadingComponent content='Loading activity...' />
+    if (loadingInitial) return <LoadingComponent content={t('activities.details.activitydetails.loading')} />
 
     if (!activity)
-        return <h2>Activity not found</h2>
+        return <h2>{t('activities.details.activitydetails.notfound')}</h2>
 
     return (
         <Grid>

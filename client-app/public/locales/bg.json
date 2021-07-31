@@ -1,28 +1,142 @@
 {
-    "activity": {
-        "hostedbyyou": "Вие сте домакин",
-        "youaregoing": "Вие ще присъствате",
-        "hostedby": "Домакин"
+    "home": {
+        "homepage": {
+            "welcomeback": "Привет отново",
+            "gotoactivities": "Към събитията!",
+            "welcometo": "Добре дошли в",
+            "login": "Вход",
+            "register": "Регистрация"
+        }
+    },
+    "nav": {
+        "navbar": {
+            "createactivitybtn": "Създай събитие",
+            "myprofilebtn": "Моят профил",
+            "logoutbtn": "Изход"
+        }
+    },
+    "profiles": {
+        "form": {
+            "profileaboutform": {
+                "displayname": "Показано име",
+                "bio": "Биография",
+                "submit": "Запази"
+            }
+        },
+        "profileabout": {
+            "about": "Относно",
+            "nobio": "Изглежда потребителя не е въвел биография."
+        },
+        "profilecard": {
+            "followers": "Последователи"
+        },
+        "profilefollowings": {
+            "peoplefollowing": "Хора следващи",
+            "people": "Хора които",
+            "isfollowing": "следва",
+            "nobodyisfollowing": "Никой не следва",
+            "bethefirst": "Бъдете първи",
+            "doesnotfollowanybody": "не следва никого"
+        },
+        "profileheader": {
+            "following": "Следва",
+            "notfollowing": "Не следвате",
+            "unfollow": "Не следвай",
+            "follow": "Следвай",
+            "followers": "Последователи"
+        },
+        "profilepage": {
+            "loadingprofile": "Профила се зарежда...",
+            "profilenotfound": "Профила не е намерен"
+        },
+        "profilephotos": {
+            "photos": "Снимки",
+            "addphoto": "Добави снимка",
+            "main": "Главна"
+        }
+    },
+    "user": {
+        "loginform": {
+            "logintositename": "Вход в Reactivities",
+            "submiterror": "Грешно име или парола",
+            "login": "Вход"
+        },
+        "registerform": {
+            "signuptositename": "Регистрация в Reactivities",
+            "username": "Потребителско име",
+            "displayname": "Показано име",
+            "register": "Регистрация"
+        }
+    },
+    "activities": {
+        "dashboard": {
+            "activitydashboard": {
+                "more": "Повече..."
+            },
+            "activityfilters": {
+                "filters": "Филтри",
+                "all": "Всички събития",
+                "imgoing": "Където съм посетител",
+                "imhosting": "Където съм домакин",
+                "selectdate": "Избери дата"
+            },
+            "activitylistitem": {
+                "hostedbyyou": "Вие сте домакин",
+                "youaregoing": "Вие ще присъствате",
+                "hostedby": "Домакин"
+            }
+        },
+        "details": {
+            "activitydetailedchat": {
+                "chatabouttheevent": "Чат на събитието",
+                "addyourcomment": "Добавете своя коментар",
+                "addreply": "Добави"
+            },
+            "activitydetailedheader": {
+                "hostedby": "Домакин",
+                "manageevent": "Редакция",
+                "cancelattendance": "Отказ от присъствие",
+                "joinactivity": "Заяви присъствие"
+            },
+            "activitydetailedsidebar": {
+                "person": "Лице",
+                "people": "Хора",
+                "host": "Домакин",
+                "following": "Следва"
+            },
+            "activitydetails": {
+                "notfound": "Събитието не е намерено",
+                "loading": "Зарежда събитието..."
+            }
+        },
+        "form": {
+            "activityform": {
+                "title": "Заглавие",
+                "desc": "Описание",
+                "category": "Категория",
+                "date": "Дата",
+                "time": "Време",
+                "city": "Град",
+                "venue": "Място",
+                "submit": "Запази"
+            }
+        }
     },
     "common": {
+        "sitename": "Reactivities",
         "activity": "Събитие",
         "activities": "Събития",
-        "view": "Преглед"
+        "view": "Преглед",
+        "cancel": "Отказ",
+        "edit": "Редакция",
+        "email": "Email",
+        "password": "Парола"
     },
     "loading": {
         "app": "Зарежда се..."
     },
-    "error": {
-        "notfound": "Упс - съдържанието не е намерено."
-    },
-    "button": {
-        "myprofile": "Моят профил",
-        "logout": "Изход",
-        "create": {
-            "activity": "Създай събитие"
-        },
-        "back": {
-            "toallactivities": "Върни се към всички събития"
-        }
+    "notfound": {
+        "msg": "Упс - съдържанието не е намерено.",
+        "toallactivities": "Върни се към всички събития"
     }
 }

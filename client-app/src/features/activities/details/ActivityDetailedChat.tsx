@@ -8,8 +8,10 @@ import { Form as FinalForm, Field } from 'react-final-form';
 import { Link } from 'react-router-dom';
 import TextAreaInput from '../../../app/common/form/TextAreaInput';
 import { formatDistance } from 'date-fns';
+import { useTranslation } from 'react-i18next';
 
 const ActivityDetailedChat = () => {
+    const { t } = useTranslation();
     const rootStore = useContext(RootStoreContext);
     const {
         createHubConnection,
@@ -34,7 +36,7 @@ const ActivityDetailedChat = () => {
                 color='teal'
                 style={{ border: 'none' }}
             >
-                <Header>Chat about this event</Header>
+                <Header>{t('activities.details.activitydetailedchat.chatabouttheevent')}</Header>
             </Segment>
             <Segment attached>
                 <Comment.Group>
@@ -59,10 +61,10 @@ const ActivityDetailedChat = () => {
                                     name='body'
                                     component={TextAreaInput}
                                     rows={2}
-                                    placeholder='Add your comment'
+                                    placeholder={t('activities.details.activitydetailedchat.addyourcomment')}
                                 />
                                 <Button
-                                    content='Add Reply'
+                                    content={t('activities.details.activitydetailedchat.addreply')}
                                     labelPosition='left'
                                     icon='edit'
                                     primary

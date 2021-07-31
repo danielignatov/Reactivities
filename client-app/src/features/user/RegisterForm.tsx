@@ -1,6 +1,7 @@
 import { FORM_ERROR } from 'final-form';
 import React, { useContext } from 'react';
 import { Form as FinalForm, Field } from 'react-final-form';
+import { useTranslation } from 'react-i18next';
 import { combineValidators, isRequired } from 'revalidate';
 import { Button, Form, Header } from 'semantic-ui-react';
 import ErrorMessage from '../../app/common/form/ErrorMessage';
@@ -16,6 +17,7 @@ const validate = combineValidators({
 })
 
 const RegisterForm = () => {
+    const { t } = useTranslation();
     const rootStore = useContext(RootStoreContext);
     const { register } = rootStore.userStore;
     const { closeModal } = rootStore.modalStore;
@@ -30,28 +32,28 @@ const RegisterForm = () => {
                 <Form error>
                     <Header 
                         as='h2' 
-                        content='Sign up to Reactivities' 
+                        content={t('user.registerform.signuptositename')} 
                         color='teal'
                         textAlign='center' />
                     <Field
                         name='username' 
                         component={TextInput} 
-                        placeholder='Username'
+                        placeholder={t('user.registerform.username')}
                     />
                     <Field
                         name='displayName' 
                         component={TextInput} 
-                        placeholder='Display Name'
+                        placeholder={t('user.registerform.displayname')}
                     />
                     <Field
                         name='email' 
                         component={TextInput} 
-                        placeholder='Email'
+                        placeholder={t('common.email')}
                     />
                     <Field
                         name='password' 
                         component={TextInput} 
-                        placeholder='Password'
+                        placeholder={t('common.password')}
                         type='password'
                     />
                     {submitError && !dirtySinceLastSubmit && (
@@ -62,7 +64,7 @@ const RegisterForm = () => {
                         disabled={(invalid && !dirtySinceLastSubmit) || pristine}
                         loading={submitting}
                         positive
-                        content='Register'
+                        content={t('user.registerform.register')}
                         onClick={handleSubmit}
                         fluid
                         color='teal'

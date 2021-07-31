@@ -1,6 +1,7 @@
 import { FORM_ERROR } from 'final-form';
 import React, { useContext } from 'react';
 import { Form as FinalForm, Field } from 'react-final-form';
+import { useTranslation } from 'react-i18next';
 import { combineValidators, isRequired } from 'revalidate';
 import { Button, Form, Header } from 'semantic-ui-react';
 import ErrorMessage from '../../app/common/form/ErrorMessage';
@@ -14,6 +15,7 @@ const validate = combineValidators({
 })
 
 const LoginForm = () => {
+    const { t } = useTranslation();
     const rootStore = useContext(RootStoreContext);
     const { login } = rootStore.userStore;
     const { closeModal } = rootStore.modalStore;
@@ -28,29 +30,29 @@ const LoginForm = () => {
                 <Form error>
                     <Header 
                         as='h2' 
-                        content='Login to Reactivities' 
+                        content={t('user.loginform.logintositename')} 
                         color='teal'
                         textAlign='center' />
                     <Field
                         name='email' 
                         component={TextInput} 
-                        placeholder='Email'
+                        placeholder={t('common.email')}
                     />
                     <Field
                         name='password' 
                         component={TextInput} 
-                        placeholder='Password'
+                        placeholder={t('common.password')}
                         type='password'
                     />
                     {submitError && !dirtySinceLastSubmit && (
-                        <ErrorMessage error={submitError} text='Invalid email or password' />
+                        <ErrorMessage error={submitError} text={t('user.loginform.submiterror')} />
                     )}
                     
                     <Button
                         disabled={(invalid && !dirtySinceLastSubmit) || pristine}
                         loading={submitting}
                         positive
-                        content='Login'
+                        content={t('user.loginform.login')}
                         onClick={handleSubmit}
                         fluid
                         color='teal'

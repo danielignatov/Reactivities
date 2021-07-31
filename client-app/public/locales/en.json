@@ -1,28 +1,142 @@
 {
-    "activity": {
-        "hostedbyyou": "You are hosting this activity",
-        "youaregoing": "You are going to this activity",
-        "hostedby": "Hosted by"
+    "home": {
+        "homepage": {
+            "welcomeback": "Welcome back",
+            "gotoactivities": "Go to activities!",
+            "welcometo": "Welcome to",
+            "login": "Login",
+            "register": "Register"
+        }
+    },
+    "nav": {
+        "navbar": {
+            "createactivitybtn": "Create Activity",
+            "myprofilebtn": "My profile",
+            "logoutbtn": "Logout"
+        }
+    },
+    "profiles": {
+        "form": {
+            "profileaboutform": {
+                "displayname": "Display name",
+                "bio": "Bio",
+                "submit": "Submit"
+            }
+        },
+        "profileabout": {
+            "about": "About",
+            "nobio": "Apparently, this user prefers to keep an air of mystery about them."
+        },
+        "profilecard": {
+            "followers": "Followers"
+        },
+        "profilefollowings": {
+            "peoplefollowing": "People following",
+            "people": "People",
+            "isfollowing": "is following",
+            "nobodyisfollowing": "Nobody is following",
+            "bethefirst": "Be the first",
+            "doesnotfollowanybody": "does not follow anybody"
+        },
+        "profileheader": {
+            "following": "Following",
+            "notfollowing": "Not following",
+            "unfollow": "Unfollow",
+            "follow": "Follow",
+            "followers": "Followers"
+        },
+        "profilepage": {
+            "loadingprofile": "Loading profile...",
+            "profilenotfound": "Profile not found"
+        },
+        "profilephotos": {
+            "photos": "Photos",
+            "addphoto": "Add Photo",
+            "main": "Main"
+        }
+    },
+    "user": {
+        "loginform": {
+            "logintositename": "Login to Reactivities",
+            "submiterror": "Invalid email or password",
+            "login": "Login"
+        },
+        "registerform": {
+            "signuptositename": "Sign up to Reactivities",
+            "username": "Username",
+            "displayname": "Display Name",
+            "register": "Register"
+        }
+    },
+    "activities": {
+        "dashboard": {
+            "activitydashboard": {
+                "more": "More..."
+            },
+            "activityfilters": {
+                "filters": "Filters",
+                "all": "All Activities",
+                "imgoing": "I'm Going",
+                "imhosting": "I'm hosting",
+                "selectdate": "Select Date"
+            },
+            "activitylistitem": {
+                "hostedbyyou": "You are hosting this activity",
+                "youaregoing": "You are going to this activity",
+                "hostedby": "Hosted by"
+            }
+        },
+        "details": {
+            "activitydetailedchat": {
+                "chatabouttheevent": "Chat about this event",
+                "addyourcomment": "Add your comment",
+                "addreply": "Add Reply"
+            },
+            "activitydetailedheader": {
+                "hostedby": "Hosted by",
+                "manageevent": "Manage Event",
+                "cancelattendance": "Cancel attendance",
+                "joinactivity": "Join Activity"
+            },
+            "activitydetailedsidebar": {
+                "person": "Person",
+                "people": "People",
+                "host": "Host",
+                "following": "Following"
+            },
+            "activitydetails": {
+                "notfound": "Activity not found",
+                "loading": "Loading activity..."
+            }
+        },
+        "form": {
+            "activityform": {
+                "title": "Title",
+                "desc": "Description",
+                "category": "Category",
+                "date": "Date",
+                "time": "Time",
+                "city": "City",
+                "venue": "Venue",
+                "submit": "Submit"
+            }
+        }
     },
     "common": {
+        "sitename": "Reactivities",
         "activity": "Activity",
         "activities": "Activities",
-        "view": "View"
+        "view": "View",
+        "cancel": "Cancel",
+        "edit": "Edit",
+        "email": "Email",
+        "password": "Password"
     },
     "loading": {
         "app": "Loading app..."
     },
-    "error": {
-        "notfound": "Oops - we've looked everywhere but couldn't find this."
-    },
-    "button": {
-        "myprofile": "My profile",
-        "logout": "Logout",
-        "create": {
-            "activity": "Create Activity"
-        },
-        "back": {
-            "toallactivities": "Return to Activities page"
-        }
+    "notfound": {
+        "msg": "Oops - we've looked everywhere but couldn't find this.",
+        "toallactivities": "Return to Activities page"
     }
 }

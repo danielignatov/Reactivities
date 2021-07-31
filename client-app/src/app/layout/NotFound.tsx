@@ -10,11 +10,11 @@ const NotFound = () => {
         <Segment placeholder>
             <Header icon>
                 <Icon name='search' />
-                {t('error.notfound')}
+                {t('notfound.msg')}
             </Header>
             <Segment.Inline>
                 <Button as={Link} to='/activities' primary>
-                {t('button.back.toallactivities')}
+                {t('notfound.toallactivities')}
                 </Button>
             </Segment.Inline>
         </Segment>

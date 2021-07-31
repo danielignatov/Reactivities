@@ -1,6 +1,10 @@
 import React, { Fragment } from 'react';
+import { useTranslation } from 'react-i18next';
 import { Segment, Button, Placeholder } from 'semantic-ui-react';
+
 const ActivityListItemPlaceholder = () => {
+  const { t } = useTranslation();
+  
   return (
     <Fragment>
       <Placeholder fluid style={{ marginTop: 50 }}>
@@ -24,7 +28,7 @@ const ActivityListItemPlaceholder = () => {
           </Segment>
           <Segment secondary style={{ minHeight: 70 }} />
           <Segment clearing>
-            <Button disabled color='blue' floated='right' content='View' />
+            <Button disabled color='blue' floated='right' content={t('common.view')} />
           </Segment>
         </Segment.Group>
       </Placeholder>

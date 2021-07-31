@@ -1,5 +1,6 @@
 import { observer } from 'mobx-react-lite';
 import React from 'react';
+import { useTranslation } from 'react-i18next';
 import { Segment, Item, Header, Button, Grid, Statistic, Divider, Reveal } from 'semantic-ui-react';
 import { IProfile } from '../../app/models/profile';
 
@@ -12,6 +13,8 @@ interface IProps {
 }
 
 const ProfileHeader: React.FC<IProps> = ({ profile, isCurrentUser, loading, follow, unfollow }) => {
+  const { t } = useTranslation();
+  
   return (
     <Segment>
       <Grid>
@@ -31,8 +34,8 @@ const ProfileHeader: React.FC<IProps> = ({ profile, isCurrentUser, loading, foll
         </Grid.Column>
         <Grid.Column width={4}>
           <Statistic.Group widths={2}>
-            <Statistic label='Followers' value={profile.followersCount} />
-            <Statistic label='Following' value={profile.followingCount} />
+            <Statistic label={t('profiles.profileheader.followers')} value={profile.followersCount} />
+            <Statistic label={t('profiles.profileheader.following')} value={profile.followingCount} />
           </Statistic.Group>
           <Divider />
           {!isCurrentUser &&
@@ -41,7 +44,7 @@ const ProfileHeader: React.FC<IProps> = ({ profile, isCurrentUser, loading, foll
                 <Button
                   fluid
                   color='teal'
-                  content={profile.following ? 'Following' : 'Not following'}
+                  content={profile.following ? t('profiles.profileheader.following') : t('profiles.profileheader.notfollowing')}
                 />
               </Reveal.Content>
               <Reveal.Content hidden>
@@ -50,7 +53,7 @@ const ProfileHeader: React.FC<IProps> = ({ profile, isCurrentUser, loading, foll
                   fluid
                   basic
                   color={profile.following ? 'red' : 'green'}
-                  content={profile.following ? 'Unfollow' : 'Follow'}
+                  content={profile.following ? t('profiles.profileheader.unfollow') : t('profiles.profileheader.follow')}
                   onClick={profile.following ? () => unfollow(profile.username) : () => follow(profile.username)}
                 />
               </Reveal.Content>

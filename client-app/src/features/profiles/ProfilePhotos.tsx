@@ -1,10 +1,12 @@
 import { observer } from 'mobx-react-lite';
 import React, { useContext, useState } from 'react';
+import { useTranslation } from 'react-i18next';
 import { Card, Header, Tab, Image, Button, Grid } from 'semantic-ui-react';
 import ImageUploadWidget from '../../app/common/imageUpload/ImageUploadWidget';
 import { RootStoreContext } from '../../app/stores/rootStore';
 
 const ProfilePhotos = () => {
+    const { t } = useTranslation();
     const rootStore = useContext(RootStoreContext);
     const { profile, isCurrentUser, uploadImage, uploadingImage, setMainImage, loading, deleteImage } = rootStore.profileStore;
     const [addPhotoMode, setAddPhotoMode] = useState(false);
@@ -20,9 +22,9 @@ const ProfilePhotos = () => {
         <Tab.Pane>
             <Grid>
                 <Grid.Column width={16} style={{ paddingBottom: 0 }} >
-                    <Header floated='left' icon='image' content='Photos' />
+                    <Header floated='left' icon='image' content={t('profiles.profilephotos.photos')} />
                     {isCurrentUser &&
-                        <Button floated='right' basic content={addPhotoMode ? 'Cancel' : 'Add Photo'} onClick={() => setAddPhotoMode(!addPhotoMode)} />
+                        <Button floated='right' basic content={addPhotoMode ? t('common.cancel') : t('profiles.profilephotos.addphoto')} onClick={() => setAddPhotoMode(!addPhotoMode)} />
                     }
                 </Grid.Column>
                 <Grid.Column width={16}>
@@ -39,7 +41,7 @@ const ProfilePhotos = () => {
                                         name={image.id}
                                         basic 
                                         positive 
-                                        content='Main' 
+                                        content={t('profiles.profilephotos.main')} 
                                         onClick={(event) => {
                                             setMainImage(image);
                                             setTarget(event.currentTarget.name);

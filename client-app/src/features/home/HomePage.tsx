@@ -5,8 +5,10 @@ import { Link } from 'react-router-dom';
 import { RootStoreContext } from '../../app/stores/rootStore';
 import LoginForm from '../user/LoginForm';
 import RegisterForm from '../user/RegisterForm';
+import { useTranslation } from 'react-i18next';
 
 const HomePage = () => {
+    const { t } = useTranslation();
     const token = window.localStorage.getItem('jwt');
     const rootStore = useContext(RootStoreContext);
     const { isLoggedIn, user } = rootStore.userStore;
@@ -17,23 +19,23 @@ const HomePage = () => {
             <Container text>
                 <Header as='h1' inverted>
                     <Image size='massive' src='/assets/logo.png' alt='logo' style={{ marginBottom: 12 }} />
-                        Reactivities
+                        {t('common.sitename')}
                     </Header>
                 {isLoggedIn && user && token ? (
                     <Fragment>
-                        <Header as='h2' inverted content={`Welcome back ${user.displayName}`} />
+                        <Header as='h2' inverted content={`${t('home.homepage.welcomeback')} ${user.displayName}`} />
                         <Button as={Link} to='/activities' size='huge' inverted>
-                            Go to activities!
+                            {t('home.homepage.gotoactivities')}
                         </Button>
                     </Fragment>
                 ) : (
                     <Fragment>
-                        <Header as='h2' inverted content='Welcome to Reactivities' />
+                        <Header as='h2' inverted content={`${t('home.homepage.welcometo')} ${t('common.sitename')}`} />
                         <Button onClick={() => openModal(<LoginForm />)} to='/login' size='huge' inverted>
-                            Login
+                            {t('home.homepage.login')}
                         </Button>
                         <Button onClick={() => openModal(<RegisterForm />)} to='/register' size='huge' inverted>
-                            Register
+                            {t('home.homepage.register')}
                         </Button>
                     </Fragment>
                 )}

@@ -1,5 +1,6 @@
 import { observer } from 'mobx-react-lite'
 import React, { useContext, useEffect } from 'react'
+import { Trans, useTranslation } from 'react-i18next'
 import { RouteComponentProps } from 'react-router'
 import { Grid } from 'semantic-ui-react'
 import LoadingComponent from '../../app/layout/LoadingComponent'
@@ -14,6 +15,7 @@ interface RouteParams {
 interface IProps extends RouteComponentProps<RouteParams> {}
 
 const ProfilePage: React.FC<IProps> = ({ match }) => {
+    const { t } = useTranslation();
     const rootStore = useContext(RootStoreContext);
     const { loadingProfile, profile, loadProfile, follow, unfollow, isCurrentUser, loading, setActiveTab } = rootStore.profileStore;
 
@@ -21,10 +23,10 @@ const ProfilePage: React.FC<IProps> = ({ match }) => {
         loadProfile(match.params.username)
     }, [loadProfile, match])
     
-    if (loadingProfile) return <LoadingComponent content='Loading profile...' />
+    if (loadingProfile) return <LoadingComponent content={t('profiles.profilepage.loadingprofile')} />
 
     if (!profile)
-        return <h2>Profile not found</h2>
+        return <h2><Trans i18nKey='profiles.profilepage.profilenotfound' /></h2>
 
     return (
         <Grid>

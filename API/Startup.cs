@@ -29,6 +29,8 @@ using Microsoft.AspNetCore.Mvc.Authorization;
 using Infrastructure.Images;
 using API.SignalR;
 using Application.Profiles;
+using Microsoft.AspNetCore.HttpOverrides;
+using System.IO;
 
 namespace API
 {
@@ -53,6 +55,14 @@ namespace API
 
         public void ConfigureProductionServices(IServiceCollection services)
         {
+            var envName = Environment.GetEnvironmentVariable("ASPNETCORE_ENVIRONMENT");
+
+            IConfigurationRoot configuration = new ConfigurationBuilder()
+                .SetBasePath(Path.Combine(Directory.GetCurrentDirectory()))
+                .AddJsonFile("appsettings.json", optional: false)
+                .AddJsonFile($"appsettings.{envName}.json", optional: false)
+                .Build();
+
             services.AddDbContext<DataContext>(opt =>
                 opt.UseMySql(Configuration.GetConnectionString("Default")
             ));
@@ -146,6 +156,10 @@ namespace API
         // This method gets called by the runtime. Use this method to configure the HTTP request pipeline.
         public void Configure(IApplicationBuilder app, IWebHostEnvironment env)
         {
+            app.UseForwardedHeaders(new ForwardedHeadersOptions {
+                ForwardedHeaders = ForwardedHeaders.XForwardedFor | ForwardedHeaders.XForwardedProto
+            });
+
             app.UseMiddleware<ErrorHandlingMiddleware>();
 
             if (env.IsDevelopment())

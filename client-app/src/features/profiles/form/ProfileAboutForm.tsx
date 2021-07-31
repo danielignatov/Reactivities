@@ -5,6 +5,7 @@ import { Form as FinalForm, Field } from 'react-final-form';
 import TextInput from '../../../app/common/form/TextInput';
 import TextAreaInput from '../../../app/common/form/TextAreaInput';
 import { combineValidators, composeValidators, hasLengthLessThan, isRequired } from 'revalidate';
+import { useTranslation } from 'react-i18next';
 
 const validate = combineValidators({
     displayName: isRequired({ message: 'The display name is required' }),
@@ -19,6 +20,8 @@ interface IProps {
 }
 
 const ProfileAboutForm: React.FC<IProps> = ({ profile, editProfile }) => {
+    const { t } = useTranslation();
+    
     return (
         <Grid>
             <Grid.Column width={16}>
@@ -32,13 +35,13 @@ const ProfileAboutForm: React.FC<IProps> = ({ profile, editProfile }) => {
                                 <Field
                                     component={TextInput}
                                     name='displayName'
-                                    placeholder='Display name'
+                                    placeholder={t('profiles.form.profileaboutform.displayname')}
                                     value={profile!.displayName} />
                                 <Field
                                     component={TextAreaInput}
                                     name='bio'
                                     rows={3}
-                                    placeholder='Bio'
+                                    placeholder={t('profiles.form.profileaboutform.bio')}
                                     value={profile!.bio} />
 
                                 <Button
@@ -46,7 +49,7 @@ const ProfileAboutForm: React.FC<IProps> = ({ profile, editProfile }) => {
                                     loading={submitting}
                                     floated='right'
                                     positive type='submit'
-                                    content='Submit' />
+                                    content={t('profiles.form.profileaboutform.submit')} />
                             </Form>
                         )}
                     />

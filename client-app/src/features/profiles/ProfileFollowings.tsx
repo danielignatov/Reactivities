@@ -1,11 +1,13 @@
 import { observer } from 'mobx-react-lite';
 import React, { useContext } from 'react';
+import { useTranslation } from 'react-i18next';
 //import { useEffect } from 'react';
 import { Tab, Grid, Header, Card, Container } from 'semantic-ui-react';
 import { RootStoreContext } from '../../app/stores/rootStore';
 import ProfileCard from './ProfileCard';
 
 const ProfileFollowings = () => {
+  const { t } = useTranslation();
   const rootStore = useContext(RootStoreContext);
   const { profile, followings, loading, activeTab } = rootStore.profileStore;
 
@@ -22,8 +24,8 @@ const ProfileFollowings = () => {
             icon='user'
             content={
               activeTab === 3
-                ? `People following ${profile!.displayName}`
-                : `People ${profile!.displayName} is following`
+                ? `${t('profiles.profilefollowings.peoplefollowing')} ${profile!.displayName}`
+                : `${t('profiles.profilefollowings.people')} ${profile!.displayName} ${t('profiles.profilefollowings.isfollowing')}`
             }
           />
         </Grid.Column>
@@ -40,8 +42,8 @@ const ProfileFollowings = () => {
             :
             <Container text>
               { activeTab === 3 
-              ? `Nobody is following ${profile?.displayName}. Be the first.`
-              : `${profile?.displayName} does not follow anybody.`
+              ? `${t('profiles.profilefollowings.nobodyisfollowing')} ${profile?.displayName}. ${t('profiles.profilefollowings.bethefirst')}.`
+              : `${profile?.displayName} ${t('profiles.profilefollowings.doesnotfollowanybody')}.`
               }
             </Container>
           }

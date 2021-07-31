@@ -6,8 +6,10 @@ import { RootStoreContext } from '../../../app/stores/rootStore';
 import InfiniteScroll from 'react-infinite-scroller';
 import ActivityFilters from './ActivityFilters';
 import ActivityListItemPlaceholder from './ActivityListItemPlaceholder';
+import { useTranslation } from 'react-i18next';
 
 const ActivityDashboard: React.FC = () => {
+    const { t } = useTranslation();
     const rootStore = useContext(RootStoreContext);
     const { loadActivities, loadingInitial, setPage, page, totalPages } = rootStore.activityStore;
     const [loadingNext, setLoadingNext] = useState(false);
@@ -49,7 +51,7 @@ const ActivityDashboard: React.FC = () => {
 
                 <Button
                     floated='right'
-                    content='More...'
+                    content={t('activities.dashboard.activitydashboard.more')}
                     positive
                     disabled={totalPages === (page + 1)}
                     onClick={handleGetNext}

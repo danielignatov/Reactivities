@@ -1,5 +1,6 @@
 import { observer } from 'mobx-react-lite';
 import React, { Fragment } from 'react';
+import { useTranslation } from 'react-i18next';
 import { Link } from 'react-router-dom';
 import { Segment, List, Item, Label, Image } from 'semantic-ui-react';
 import { IAttendee } from '../../../app/models/activity';
@@ -9,6 +10,8 @@ interface IProps {
 }
 
 const ActivityDetailedSidebar: React.FC<IProps> = ({ attendees }) => {
+    const { t } = useTranslation();
+    
     return (
         <Fragment>
             <Segment
@@ -19,7 +22,7 @@ const ActivityDetailedSidebar: React.FC<IProps> = ({ attendees }) => {
                 inverted
                 color='teal'
             >
-                {attendees.length} {attendees.length === 1 ? 'Person' : 'People'} going
+                {attendees.length} {attendees.length === 1 ? t('activities.details.activitydetailedsidebar.person') : t('activities.details.activitydetailedsidebar.people')} going
               </Segment>
             <Segment attached>
                 <List relaxed divided>
@@ -30,7 +33,7 @@ const ActivityDetailedSidebar: React.FC<IProps> = ({ attendees }) => {
                                     style={{ position: 'absolute' }}
                                     color='orange'
                                     ribbon='right'>
-                                    Host
+                                    {t('activities.details.activitydetailedsidebar.host')}
                                 </Label>
                             }
 
@@ -40,7 +43,7 @@ const ActivityDetailedSidebar: React.FC<IProps> = ({ attendees }) => {
                                     <Link to={`/profile/${attendee.username}`}>{attendee.displayName}</Link>
                                 </Item.Header>
                                 {attendee.following && 
-                                    <Item.Extra style={{ color: 'orange' }}>Following</Item.Extra>
+                                    <Item.Extra style={{ color: 'orange' }}>{t('activities.details.activitydetailedsidebar.following')}</Item.Extra>
                                 }
                             </Item.Content>
                         </Item>

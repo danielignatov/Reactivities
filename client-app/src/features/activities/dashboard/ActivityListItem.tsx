@@ -21,16 +21,16 @@ const ActivityListItem: React.FC<{ activity: IActivity }> = ({ activity }) => {
                         <Item.Content>
                             <Item.Header as={Link} to={`/activities/${activity.id}`}>{activity.title}</Item.Header>
                             <Item.Description>
-                            {t('activity.hostedby')} <Link to={`/profile/${host.username}`}> {host.displayName}</Link>
+                            {t('activities.dashboard.activitylistitem.hostedby')} <Link to={`/profile/${host.username}`}> {host.displayName}</Link>
                             </Item.Description>
                             {activity.isHost && 
                             <Item.Description>
-                                <Label basic color='orange' content={t('activity.hostedbyyou')} />
+                                <Label basic color='orange' content={t('activities.dashboard.activitylistitem.hostedbyyou')} />
                             </Item.Description>
                             }
                             {activity.isGoing && !activity.isHost &&
                             <Item.Description>
-                                <Label basic color='green' content={t('activity.youaregoing')} />
+                                <Label basic color='green' content={t('activities.dashboard.activitylistitem.youaregoing')} />
                             </Item.Description>
                             }
                         </Item.Content>
