@@ -50,6 +50,8 @@ namespace API
                     webBuilder
                     .ConfigureKestrel(serverOptions => {
                         serverOptions.Listen(System.Net.IPAddress.Loopback, 5000);
+                        // Security - do not advertise used server
+                        serverOptions.AddServerHeader = false;
                     })
                     .UseStartup<Startup>();
                 });
