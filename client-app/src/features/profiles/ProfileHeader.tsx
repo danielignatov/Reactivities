@@ -17,8 +17,8 @@ const ProfileHeader: React.FC<IProps> = ({ profile, isCurrentUser, loading, foll
   
   return (
     <Segment>
-      <Grid>
-        <Grid.Column width={12}>
+      <Grid stackable={true}>
+        <Grid.Column width={11}>
           <Item.Group>
             <Item>
               <Item.Image
@@ -32,7 +32,7 @@ const ProfileHeader: React.FC<IProps> = ({ profile, isCurrentUser, loading, foll
             </Item>
           </Item.Group>
         </Grid.Column>
-        <Grid.Column width={4}>
+        <Grid.Column width={5}>
           <Statistic.Group widths={2}>
             <Statistic label={t('profiles.profileheader.followers')} value={profile.followersCount} />
             <Statistic label={t('profiles.profileheader.following')} value={profile.followingCount} />

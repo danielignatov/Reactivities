@@ -25,40 +25,45 @@ const ActivityDashboard: React.FC = () => {
     }, [loadActivities]);
 
     return (
-        <Grid>
-            <Grid.Column width={10}>
-                {loadingInitial && page === 0 ?
-                    <ActivityListItemPlaceholder /> :
-                    (
-                        <InfiniteScroll
-                            pageStart={0}
-                            loadMore={handleGetNext}
-                            hasMore={!loadingNext && ((page + 1) < totalPages)}
-                            initialLoad={false}
-                        >
-                            <ActivityList />
-                        </InfiniteScroll>
-                    )
-                }
+        <React.Fragment>
+            <Grid stackable={true} reversed='mobile'>
+                <Grid.Column width={10}>
+                    {loadingInitial && page === 0 ?
+                        <ActivityListItemPlaceholder /> :
+                        (
+                            <InfiniteScroll
+                                pageStart={0}
+                                loadMore={handleGetNext}
+                                hasMore={!loadingNext && ((page + 1) < totalPages)}
+                                initialLoad={false}
+                            >
+                                <ActivityList />
+                            </InfiniteScroll>
+                        )
+                    }
 
 
-            </Grid.Column>
-            <Grid.Column width={6}>
-                <ActivityFilters />
-            </Grid.Column>
-            <Grid.Column width={10}>
-                <Loader active={loadingNext} />
+                </Grid.Column>
+                <Grid.Column width={6} style={{ marginTop: '1.5em' }}>
+                    <ActivityFilters />
+                </Grid.Column>
 
-                <Button
-                    floated='right'
-                    content={t('activities.dashboard.activitydashboard.more')}
-                    positive
-                    disabled={totalPages === (page + 1)}
-                    onClick={handleGetNext}
-                    loading={loadingNext}
-                />
-            </Grid.Column>
-        </Grid>
+            </Grid>
+            <Grid>
+                <Grid.Column width={10}>
+                    <Loader active={loadingNext} />
+
+                    <Button
+                        floated='right'
+                        content={t('activities.dashboard.activitydashboard.more')}
+                        positive
+                        disabled={totalPages === (page + 1)}
+                        onClick={handleGetNext}
+                        loading={loadingNext}
+                    />
+                </Grid.Column>
+            </Grid>
+        </React.Fragment>
     )
 }
 

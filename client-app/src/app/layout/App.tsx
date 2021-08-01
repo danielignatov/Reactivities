@@ -43,7 +43,7 @@ const App: React.FC<RouteComponentProps> = ({ location }) => {
       <Route path={'/(.+)'} render={() => (
         <Fragment>
           <NavBar />
-          <Container style={{ marginTop: '7em' }}>
+          <Container style={{ marginTop: '1.5em' }}>
             <Switch>
               <PrivateRoute exact path='/activities' component={ActivityDashboard} />
               <PrivateRoute path='/activities/:id' component={ActivityDetails} />

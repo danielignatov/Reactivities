@@ -9,20 +9,20 @@ const ActivityDetailedInfo: React.FC<{ activity: IActivity }> = ({ activity }) =
         <Segment.Group>
             <Segment attached='top'>
                 <Grid>
-                    <Grid.Column width={1}>
+                    <Grid.Column width={2} textAlign='center'>
                         <Icon size='large' color='teal' name='info' />
                     </Grid.Column>
-                    <Grid.Column width={15}>
+                    <Grid.Column width={14}>
                         <p>{activity.description}</p>
                     </Grid.Column>
                 </Grid>
             </Segment>
             <Segment attached>
                 <Grid verticalAlign='middle'>
-                    <Grid.Column width={1}>
+                    <Grid.Column width={2} textAlign='center'>
                         <Icon name='calendar' size='large' color='teal' />
                     </Grid.Column>
-                    <Grid.Column width={15}>
+                    <Grid.Column width={14}>
                         <span>
                             {format(activity.date, 'eeee do MMMM')} at {format(activity.date, 'h:mm a')}
                         </span>
@@ -31,10 +31,10 @@ const ActivityDetailedInfo: React.FC<{ activity: IActivity }> = ({ activity }) =
             </Segment>
             <Segment attached>
                 <Grid verticalAlign='middle'>
-                    <Grid.Column width={1}>
-                        <Icon name='marker' size='large' color='teal' />
+                    <Grid.Column width={2} textAlign='center'>
+                        <Icon name='marker' size='large' color='teal'  />
                     </Grid.Column>
-                    <Grid.Column width={11}>
+                    <Grid.Column width={14}>
                         <span>{activity.venue}, {activity.city}</span>
                     </Grid.Column>
                 </Grid>
