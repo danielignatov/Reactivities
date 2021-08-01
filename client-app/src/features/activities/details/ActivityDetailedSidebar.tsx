@@ -22,7 +22,7 @@ const ActivityDetailedSidebar: React.FC<IProps> = ({ attendees }) => {
                 inverted
                 color='teal'
             >
-                {attendees.length} {attendees.length === 1 ? t('activities.details.activitydetailedsidebar.person') : t('activities.details.activitydetailedsidebar.people')} going
+                {attendees.length} {attendees.length === 1 ? t('activities.details.activitydetailedsidebar.person') : t('activities.details.activitydetailedsidebar.peoplegoing')} 
               </Segment>
             <Segment attached>
                 <List relaxed divided>

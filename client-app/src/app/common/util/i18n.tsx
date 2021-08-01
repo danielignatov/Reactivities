@@ -27,8 +27,7 @@ i18n
       crossDomain: false
     },
     react: { 
-      useSuspense: false,
-      wait: true
+      useSuspense: true
     }
   });
 

@@ -16,6 +16,7 @@ import ModalContainer from '../common/modals/ModalContainer';
 import ProfilePage from '../../features/profiles/ProfilePage';
 import PrivateRoute from './PrivateRoute';
 import { useTranslation } from 'react-i18next';
+import NavBarFixed from '../../features/nav/NavBarFixed';
 
 const App: React.FC<RouteComponentProps> = ({ location }) => {
   const { t } = useTranslation();
@@ -43,6 +44,7 @@ const App: React.FC<RouteComponentProps> = ({ location }) => {
       <Route path={'/(.+)'} render={() => (
         <Fragment>
           <NavBar />
+          <NavBarFixed />
           <Container style={{ marginTop: '1.5em' }}>
             <Switch>
               <PrivateRoute exact path='/activities' component={ActivityDashboard} />

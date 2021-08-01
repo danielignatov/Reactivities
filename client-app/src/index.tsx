@@ -1,4 +1,4 @@
-import React from 'react';
+import React, { Suspense } from 'react';
 import ReactDOM from 'react-dom';
 import { Router } from 'react-router-dom';
 import { createBrowserHistory } from 'history';
@@ -19,7 +19,9 @@ export const history = createBrowserHistory();
 ReactDOM.render(
   <Router history={history}>
     <ScrollToTop>
-      <App />
+      <Suspense fallback='Loading app...'>
+        <App />
+      </Suspense>
     </ScrollToTop>
   </Router>,
   document.getElementById('root')

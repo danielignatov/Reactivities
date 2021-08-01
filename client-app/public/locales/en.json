@@ -100,7 +100,7 @@
             },
             "activitydetailedsidebar": {
                 "person": "Person",
-                "people": "People",
+                "peoplegoing": "People going",
                 "host": "Host",
                 "following": "Following"
             },

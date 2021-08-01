@@ -2,7 +2,7 @@ body {
   background-color: rgb(234, 234, 234) !important;
 }
 
-.ui.inverted.stackable.attached.menu {
+.ui.inverted.stackable.attached.menu, .ui.inverted.fixed.menu {
   background-image: linear-gradient(
     135deg,
     rgb(24, 42, 115) 0%,
