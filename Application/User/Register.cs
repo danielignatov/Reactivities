@@ -42,8 +42,8 @@ namespace Application.User
             private readonly IJwtGenerator _jwtGeneratior;
 
             public Handler(
-                DataContext context, 
-                UserManager<AppUser> userManager, 
+                DataContext context,
+                UserManager<AppUser> userManager,
                 IJwtGenerator jwtGeneratior)
             {
                 _context = context;
@@ -59,27 +59,33 @@ namespace Application.User
                 if (await _context.Users.AnyAsync(x => x.UserName == request.Username))
                     throw new RestException(System.Net.HttpStatusCode.BadRequest, new { Username = "Username already exists" });
 
-                var user = new AppUser
+                try
                 {
-                    DisplayName = request.DisplayName,
-                    Email = request.Email,
-                    UserName = request.Username
-                };
-
-                var result = await _userManager.CreateAsync(user, request.Password);
-
-                if (result.Succeeded)
-                {
-                    return new User
+                    var user = new AppUser
                     {
-                        DisplayName = user.DisplayName,
-                        Token = _jwtGeneratior.CreateToken(user),
-                        Username = user.UserName,
-                        Image = user?.Images.FirstOrDefault(x => x.IsMain)?.Url
+                        DisplayName = request.DisplayName,
+                        Email = request.Email,
+                        UserName = request.Username
                     };
-                }
 
-                throw new Exception("Problem creating user");
+                    var result = await _userManager.CreateAsync(user, request.Password);
+
+                    if (result.Succeeded)
+                    {
+                        return new User
+                        {
+                            DisplayName = user.DisplayName,
+                            Token = _jwtGeneratior.CreateToken(user),
+                            Username = user.UserName
+                        };
+                    }
+
+                    throw new Exception("Problem creating user");
+                }
+                catch (Exception)
+                {
+                    throw new RestException(System.Net.HttpStatusCode.InternalServerError, new { Message = "Problem creating user" });
+                }
             }
         }
     }
