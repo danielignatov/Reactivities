@@ -19,7 +19,7 @@ const ActivityListItem: React.FC<{ activity: IActivity }> = ({ activity }) => {
                     <Item>
                         <Item.Image size='tiny' circular src={host.image || '/assets/user.png'} style={{marginBottom: 5}} />
                         <Item.Content>
-                            <Item.Header as={Link} to={`/activities/${activity.id}`}>{activity.title}</Item.Header>
+                            <Item.Header as={Link} to={`/activity/${activity.id}`}>{activity.title}</Item.Header>
                             <Item.Description>
                             {t('activities.dashboard.activitylistitem.hostedby')} <Link to={`/profile/${host.username}`}> {host.displayName}</Link>
                             </Item.Description>
@@ -47,7 +47,7 @@ const ActivityListItem: React.FC<{ activity: IActivity }> = ({ activity }) => {
             <Segment clearing>
                 <span>{activity.description}</span>
                 <Button
-                    as={Link} to={`/activities/${activity.id}`}
+                    as={Link} to={`/activity/${activity.id}`}
                     floated='right'
                     content={t('common.view')}
                     color='blue' />

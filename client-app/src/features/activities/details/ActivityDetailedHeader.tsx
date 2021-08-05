@@ -6,6 +6,7 @@ import { IActivity } from '../../../app/models/activity';
 import { format } from 'date-fns';
 import { RootStoreContext } from '../../../app/stores/rootStore';
 import { useTranslation } from 'react-i18next';
+import LoginForm from '../../user/LoginForm';
 
 const activityImageStyle = {
     filter: 'brightness(30%)'
@@ -24,7 +25,10 @@ const ActivityDetailedHeader: React.FC<{ activity: IActivity }> = ({ activity })
     const { t } = useTranslation();
     const rootStore = useContext(RootStoreContext);
     const { attendActivity, cancelAttendance, loading } = rootStore.activityStore;
+    const { isLoggedIn } = rootStore.userStore;
+    const { openModal } = rootStore.modalStore;
     const host = activity.attendees.filter(x => x.isHost)[0];
+    
     return (
         <Segment.Group>
             <Segment basic attached='top' style={{ padding: '0' }}>
@@ -48,14 +52,16 @@ const ActivityDetailedHeader: React.FC<{ activity: IActivity }> = ({ activity })
                 </Segment>
             </Segment>
             <Segment clearing attached='bottom'>
-                {activity.isHost ? (
+                {activity.isHost && isLoggedIn ? (
                     <Button as={Link} to={`/manage/${activity.id}`} color='orange' floated='right'>
                         {t('activities.details.activitydetailedheader.manageevent')}
                     </Button>
                 ) : activity.isGoing ? (
                     <Button loading={loading} onClick={cancelAttendance}>{t('activities.details.activitydetailedheader.cancelattendance')}</Button>
-                ) : (
+                ) : isLoggedIn ? (
                     <Button loading={loading} onClick={attendActivity} color='teal'>{t('activities.details.activitydetailedheader.joinactivity')}</Button>
+                ) : (
+                    <Button onClick={() => openModal(<LoginForm />)} to='/login' color='teal'>{t('activities.details.activitydetailedheader.joinactivity')}</Button>
                 )}
             </Segment>
         </Segment.Group>

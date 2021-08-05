@@ -1,5 +1,4 @@
 using System;
-using System.Linq;
 using System.Threading;
 using System.Threading.Tasks;
 using Application.Errors;
@@ -22,6 +21,7 @@ namespace Application.User
             public string Username { get; set; }
             public string Email { get; set; }
             public string Password { get; set; }
+            public string Locale { get; set; }
         }
 
         public class CommandValidatior : AbstractValidator<Command>
@@ -65,7 +65,9 @@ namespace Application.User
                     {
                         DisplayName = request.DisplayName,
                         Email = request.Email,
-                        UserName = request.Username
+                        UserName = request.Username,
+                        RegistrationDate = DateTime.UtcNow,
+                        Locale = request.Locale
                     };
 
                     var result = await _userManager.CreateAsync(user, request.Password);
@@ -76,7 +78,8 @@ namespace Application.User
                         {
                             DisplayName = user.DisplayName,
                             Token = _jwtGeneratior.CreateToken(user),
-                            Username = user.UserName
+                            Username = user.UserName,
+                            Locale = user.Locale
                         };
                     }
 
@@ -84,7 +87,9 @@ namespace Application.User
                 }
                 catch (Exception)
                 {
-                    throw new RestException(System.Net.HttpStatusCode.InternalServerError, new { Message = "Problem creating user" });
+                    throw new RestException(
+                        System.Net.HttpStatusCode.InternalServerError, 
+                        new { Message = "Problem creating user" });
                 }
             }
         }

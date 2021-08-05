@@ -29,6 +29,7 @@
     "react-final-form": "^6.5.2",
     "react-i18next": "^11.11.4",
     "react-infinite-scroller": "^1.2.4",
+    "react-responsive": "^9.0.0-beta.3",
     "react-router-dom": "^5.2.0",
     "react-scripts": "4.0.1",
     "react-toastify": "^6.2.0",

@@ -12,7 +12,7 @@ interface RouteParams {
     username: string
 }
 
-interface IProps extends RouteComponentProps<RouteParams> {}
+interface IProps extends RouteComponentProps<RouteParams> { }
 
 const ProfilePage: React.FC<IProps> = ({ match }) => {
     const { t } = useTranslation();
@@ -22,19 +22,28 @@ const ProfilePage: React.FC<IProps> = ({ match }) => {
     useEffect(() => {
         loadProfile(match.params.username)
     }, [loadProfile, match])
-    
+
     if (loadingProfile) return <LoadingComponent content={t('profiles.profilepage.loadingprofile')} />
 
     if (!profile)
         return <h2><Trans i18nKey='profiles.profilepage.profilenotfound' /></h2>
 
     return (
-        <Grid>
-            <Grid.Column width={16}>
-                <ProfileHeader profile={profile!} follow={follow} unfollow={unfollow} isCurrentUser={isCurrentUser} loading={loading} />
-                <ProfileContent setActiveTab={setActiveTab} />
-            </Grid.Column>
-        </Grid>
+        <React.Fragment>
+            <Grid className='profile-page'>
+                <Grid.Column width={16}>
+                    <ProfileHeader 
+                    profile={profile!} 
+                    follow={follow} 
+                    unfollow={unfollow} 
+                    isCurrentUser={isCurrentUser} 
+                    loading={loading} />
+                </Grid.Column>
+                <Grid.Column width={16} only='computer tablet' >
+                    <ProfileContent setActiveTab={setActiveTab} />
+                </Grid.Column>
+            </Grid>
+        </React.Fragment>
     )
 }
 

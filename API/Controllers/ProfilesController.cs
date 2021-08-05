@@ -1,4 +1,3 @@
-using System;
 using System.Collections.Generic;
 using System.Threading.Tasks;
 using Application.Profiles;
@@ -11,6 +10,7 @@ namespace API.Controllers
     public class ProfilesController : BaseController
     {
         [HttpGet("{username}")]
+        [AllowAnonymous]
         public async Task<ActionResult<Profile>> Get(string username) 
         {
             return await Mediator.Send(new Details.Query{Username = username});

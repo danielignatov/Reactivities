@@ -5,11 +5,14 @@ import { useContext } from 'react';
 import { RootStoreContext } from '../../../app/stores/rootStore';
 import { observer } from 'mobx-react-lite';
 import { useTranslation } from 'react-i18next';
+import LoginForm from '../../user/LoginForm';
 
 const ActivityFilters = () => {
   const { t } = useTranslation();
   const rootStore = useContext(RootStoreContext);
   const { predicate, setPredicate } = rootStore.activityStore;
+  const { isLoggedIn } = rootStore.userStore;
+  const { openModal } = rootStore.modalStore;
 
   return (
     <Fragment>
@@ -23,13 +26,21 @@ const ActivityFilters = () => {
           content={t('activities.dashboard.activityfilters.all')} />
         <Menu.Item
           active={predicate.has('isGoing')}
-          onClick={() => setPredicate('isGoing', 'true')}
+          onClick={() => (
+            isLoggedIn ?
+            setPredicate('isGoing', 'true') :
+            openModal(<LoginForm />)
+            )}
           color={'blue'}
           name={'username'}
           content={t('activities.dashboard.activityfilters.imgoing')} />
         <Menu.Item
           active={predicate.has('isHost')}
-          onClick={() => setPredicate('isHost', 'true')}
+          onClick={() => (
+            isLoggedIn ?
+            setPredicate('isHost', 'true') :
+            openModal(<LoginForm />)
+            )}
           color={'blue'}
           name={'host'}
           content={t('activities.dashboard.activityfilters.imhosting')} />

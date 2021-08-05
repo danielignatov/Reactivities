@@ -49,3 +49,27 @@ body {
 }
 
 /* end activity form */
+
+/* login form */
+.no-acc-text {
+  padding-top: .5em;
+  color: rgba(34,36,38,.25);
+}
+
+.no-acc-reg-link {
+  padding-top: .5em;
+  color: rgba(34,36,38,.25);
+}
+
+/* end login form */
+
+.navbar-spacer {
+  height: 5em;
+}
+
+/* Semantic UI Mobile */
+@media only screen and (max-width: 767px) {
+  .navbar-spacer {
+    height: 5em;
+  }
+}

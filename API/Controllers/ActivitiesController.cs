@@ -1,9 +1,7 @@
 using System;
-using System.Collections.Generic;
 using System.Threading;
 using System.Threading.Tasks;
 using Application.Activities;
-using Domain;
 using MediatR;
 using Microsoft.AspNetCore.Authorization;
 using Microsoft.AspNetCore.Mvc;
@@ -16,6 +14,7 @@ namespace API.Controllers
         protected const int DefaultOffset = 0;
 
         [HttpGet]
+        [AllowAnonymous]
         public async Task<ActionResult<List.ActivitiesEnvelope>> List(
             CancellationToken ct, 
             DateTime? startDate,
@@ -28,7 +27,7 @@ namespace API.Controllers
         }
 
         [HttpGet("{id}")]
-        [Authorize]
+        [AllowAnonymous]
         public async Task<ActionResult<ActivityDto>> Details(Guid id, CancellationToken ct)
         {
             return await Mediator.Send(new Details.Query { Id = id }, ct);

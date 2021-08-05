@@ -3,6 +3,7 @@ export interface IUser {
     displayName: string;
     token: string;
     image?: string;
+    locale?: string;
 }
 
 export interface IUserFormValues {
@@ -10,4 +11,5 @@ export interface IUserFormValues {
     password: string;
     displayName?: string;
     username?: string;
+    locale?: string;
 }

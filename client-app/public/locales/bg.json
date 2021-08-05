@@ -3,16 +3,17 @@
         "homepage": {
             "welcomeback": "Привет отново",
             "gotoactivities": "Към събитията!",
-            "welcometo": "Добре дошли в",
-            "login": "Вход",
-            "register": "Регистрация"
+            "welcometo": "Добре дошли в"
         }
     },
     "nav": {
         "navbar": {
             "createactivitybtn": "Създай събитие",
             "myprofilebtn": "Моят профил",
-            "logoutbtn": "Изход"
+            "logoutbtn": "Изход",
+            "guest": "Гост",
+            "login": "Вход",
+            "register": "Регистрация"
         }
     },
     "profiles": {
@@ -59,7 +60,8 @@
         "loginform": {
             "logintositename": "Вход в Reactivities",
             "submiterror": "Грешно име или парола",
-            "login": "Вход"
+            "login": "Вход",
+            "noaccount": "Нямате акаунт?"
         },
         "registerform": {
             "signuptositename": "Регистрация в Reactivities",
@@ -90,7 +92,8 @@
             "activitydetailedchat": {
                 "chatabouttheevent": "Чат на събитието",
                 "addyourcomment": "Добавете своя коментар",
-                "addreply": "Добави"
+                "addreply": "Добави",
+                "msgcannotbeempty": "Полето не може да е празно"
             },
             "activitydetailedheader": {
                 "hostedby": "Домакин",

@@ -3,16 +3,17 @@
         "homepage": {
             "welcomeback": "Welcome back",
             "gotoactivities": "Go to activities!",
-            "welcometo": "Welcome to",
-            "login": "Login",
-            "register": "Register"
+            "welcometo": "Welcome to"
         }
     },
     "nav": {
         "navbar": {
             "createactivitybtn": "Create Activity",
             "myprofilebtn": "My profile",
-            "logoutbtn": "Logout"
+            "logoutbtn": "Logout",
+            "guest": "Guest",
+            "login": "Login",
+            "register": "Register"
         }
     },
     "profiles": {
@@ -59,7 +60,8 @@
         "loginform": {
             "logintositename": "Login to Reactivities",
             "submiterror": "Invalid email or password",
-            "login": "Login"
+            "login": "Login",
+            "noaccount": "No account?"
         },
         "registerform": {
             "signuptositename": "Sign up to Reactivities",
@@ -90,7 +92,8 @@
             "activitydetailedchat": {
                 "chatabouttheevent": "Chat about this event",
                 "addyourcomment": "Add your comment",
-                "addreply": "Add Reply"
+                "addreply": "Add Reply",
+                "msgcannotbeempty": "Message cannot be empty"
             },
             "activitydetailedheader": {
                 "hostedby": "Hosted by",

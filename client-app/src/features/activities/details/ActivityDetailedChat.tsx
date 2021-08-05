@@ -7,8 +7,11 @@ import { RootStoreContext } from '../../../app/stores/rootStore';
 import { Form as FinalForm, Field } from 'react-final-form';
 import { Link } from 'react-router-dom';
 import TextAreaInput from '../../../app/common/form/TextAreaInput';
+import { combineValidators, isRequired } from 'revalidate';
 import { formatDistance } from 'date-fns';
 import { useTranslation } from 'react-i18next';
+
+
 
 const ActivityDetailedChat = () => {
     const { t } = useTranslation();
@@ -19,6 +22,11 @@ const ActivityDetailedChat = () => {
         addComment,
         activity
     } = rootStore.activityStore;
+    const { isLoggedIn } = rootStore.userStore;
+
+    const validate = combineValidators({
+        body: isRequired({ message: t('activities.details.activitydetailedchat.msgcannotbeempty') })
+    })
 
     useEffect(() => {
         createHubConnection(activity!.id);
@@ -52,10 +60,11 @@ const ActivityDetailedChat = () => {
                             </Comment.Content>
                         </Comment>
                     ))}
-
+                    
                     <FinalForm
+                        validate={validate}
                         onSubmit={addComment}
-                        render={({ handleSubmit, submitting, form }) => (
+                        render={({ handleSubmit, invalid, submitting, form }) => (
                             <Form onSubmit={() => handleSubmit()!.then(() => form.reset())}>
                                 <Field
                                     name='body'
@@ -64,6 +73,7 @@ const ActivityDetailedChat = () => {
                                     placeholder={t('activities.details.activitydetailedchat.addyourcomment')}
                                 />
                                 <Button
+                                    disabled={!isLoggedIn || invalid || submitting}
                                     content={t('activities.details.activitydetailedchat.addreply')}
                                     labelPosition='left'
                                     icon='edit'

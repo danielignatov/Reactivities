@@ -33,6 +33,11 @@ namespace Application.Profiles
 
             var currentUser = await _userAccessor.GetCurrentUserAsync();
 
+            bool isFollowed =
+                (currentUser != null) ?
+                user.Followers.Any(x => x.ObserverId == currentUser.Id) :
+                false;
+
             var profile = new Profile()
             {
                 DisplayName = user.DisplayName,
@@ -42,7 +47,7 @@ namespace Application.Profiles
                 Bio = user.Bio,
                 FollowersCount = user.Followers.Count(),
                 FollowingCount = user.Following.Count(),
-                IsFollowed = user.Followers.Any(x => x.ObserverId == currentUser.Id)
+                IsFollowed = isFollowed
             };
 
             return profile;

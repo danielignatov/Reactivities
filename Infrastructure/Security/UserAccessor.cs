@@ -21,6 +21,11 @@ namespace Infrastructure.Security
             _httpContextAccessor = httpContextAccessor;
         }
 
+        public bool IsUserLogged()
+        {
+            return (_httpContextAccessor.HttpContext?.User != null ? true : false);
+        }
+
         public string GetCurrentUsername()
         {
             var username = _httpContextAccessor

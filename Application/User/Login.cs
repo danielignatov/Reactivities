@@ -63,7 +63,8 @@ namespace Application.User
                         Username = user.UserName,
                         Token = _jwtGenerator.CreateToken(user),
                         DisplayName = user.DisplayName,
-                        Image = user?.Images.FirstOrDefault(x => x.IsMain)?.Url
+                        Image = user?.Images.FirstOrDefault(x => x.IsMain)?.Url,
+                        Locale = user.Locale
                     };
                 }
 

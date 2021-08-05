@@ -11,6 +11,7 @@ import 'semantic-ui-css/semantic.min.css';
 import ScrollToTop from './app/layout/ScrollToTop';
 import dateFnsLocalizer from 'react-widgets-date-fns';
 import './app/common/util/i18n';
+import LoadingComponent from './app/layout/LoadingComponent';
 
 dateFnsLocalizer();
 
@@ -19,7 +20,7 @@ export const history = createBrowserHistory();
 ReactDOM.render(
   <Router history={history}>
     <ScrollToTop>
-      <Suspense fallback='Loading app...'>
+      <Suspense fallback={<LoadingComponent content='Loading app...' />}>
         <App />
       </Suspense>
     </ScrollToTop>

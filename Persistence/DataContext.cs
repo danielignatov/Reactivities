@@ -24,6 +24,14 @@ namespace Persistence
 
         public DbSet<UserFollowing> Followings { get; set; }
 
+        protected override void OnConfiguring(DbContextOptionsBuilder options)
+        {
+            if (!options.IsConfigured)
+            {
+                options.UseSqlServer("Server=localhost; Database=reactivities; Uid=appuser; Pwd=Pass@2021");
+            }
+        }
+
         protected override void OnModelCreating(ModelBuilder builder)
         {
             base.OnModelCreating(builder);
@@ -34,8 +42,8 @@ namespace Persistence
                 new Value { Id = 3, Name = "Value 103" }
             );
 
-            builder.Entity<UserActivity>(x => 
-                x.HasKey(ua => new {ua.AppUserId, ua.ActivityId }));
+            builder.Entity<UserActivity>(x =>
+                x.HasKey(ua => new { ua.AppUserId, ua.ActivityId }));
 
             builder.Entity<UserActivity>()
                 .HasOne(u => u.AppUser)
@@ -47,7 +55,8 @@ namespace Persistence
                 .WithMany(u => u.UserActivities)
                 .HasForeignKey(a => a.ActivityId);
 
-            builder.Entity<UserFollowing>(b => {
+            builder.Entity<UserFollowing>(b =>
+            {
                 b.HasKey(k => new { k.ObserverId, k.TargetId });
 
                 b.HasOne(o => o.Observer)

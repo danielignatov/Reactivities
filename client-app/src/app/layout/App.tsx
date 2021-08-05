@@ -4,7 +4,6 @@ import NavBar from '../../features/nav/NavBar';
 import ActivityDashboard from '../../features/activities/dashboard/ActivityDashboard';
 import { observer } from 'mobx-react-lite';
 import { Route, RouteComponentProps, Switch, withRouter } from 'react-router-dom';
-import HomePage from '../../features/home/HomePage';
 import ActivityForm from '../../features/activities/form/ActivityForm';
 import ActivityDetails from '../../features/activities/details/ActivityDetails';
 import NotFound from './NotFound';
@@ -16,7 +15,7 @@ import ModalContainer from '../common/modals/ModalContainer';
 import ProfilePage from '../../features/profiles/ProfilePage';
 import PrivateRoute from './PrivateRoute';
 import { useTranslation } from 'react-i18next';
-import NavBarFixed from '../../features/nav/NavBarFixed';
+import RegisterForm from '../../features/user/RegisterForm';
 
 const App: React.FC<RouteComponentProps> = ({ location }) => {
   const { t } = useTranslation();
@@ -32,30 +31,37 @@ const App: React.FC<RouteComponentProps> = ({ location }) => {
     }
   }, [getUser, setAppLoaded, token])
 
-  if (!appLoaded)  {
+  if (!appLoaded) {
     return <LoadingComponent content={t('loading.app')} />
   }
-  
+
   return (
     <Fragment>
       <ModalContainer />
       <ToastContainer position='bottom-right' />
-      <Route exact path='/' component={HomePage} />
+      <Route exact path='/' render={() => (
+        <Fragment>
+          <NavBar />
+          <Container>
+            <ActivityDashboard />
+          </Container>
+        </Fragment>
+      )} />
       <Route path={'/(.+)'} render={() => (
         <Fragment>
           <NavBar />
-          <NavBarFixed />
-          <Container style={{ marginTop: '1.5em' }}>
+          <Container>
             <Switch>
-              <PrivateRoute exact path='/activities' component={ActivityDashboard} />
-              <PrivateRoute path='/activities/:id' component={ActivityDetails} />
+              <Route path='/activities' component={ActivityDashboard} />
+              <Route path='/activity/:id' component={ActivityDetails} />
               <PrivateRoute
                 key={location.key}
                 path={['/createActivity', '/manage/:id']}
-                component={ActivityForm} 
-                />
-              <PrivateRoute path='/profile/:username' component={ProfilePage} />
-              <Route path='/login' component={LoginForm} />
+                component={ActivityForm}
+              />
+              <Route path='/profile/:username' component={ProfilePage} />
+              <Route exact path='/login' component={LoginForm} />
+              <Route exact path='/register' component={RegisterForm} />
               <Route component={NotFound} />
             </Switch>
           </Container>

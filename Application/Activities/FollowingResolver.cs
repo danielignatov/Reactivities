@@ -22,7 +22,7 @@ namespace Application.Activities
         {
             var currentUser = _userAccessor.GetCurrentUserAsync().Result;
 
-            if (currentUser.Following.Any(x => x.TargetId == source.AppUserId))
+            if (currentUser != null && currentUser.Following.Any(x => x.TargetId == source.AppUserId))
             {
                 return true;
             }

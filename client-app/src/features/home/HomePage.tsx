@@ -32,10 +32,10 @@ const HomePage = () => {
                     <Fragment>
                         <Header as='h2' inverted content={`${t('home.homepage.welcometo')} ${t('common.sitename')}`} />
                         <Button onClick={() => openModal(<LoginForm />)} to='/login' size='huge' inverted>
-                            {t('home.homepage.login')}
+                            {t('nav.navbar.login')}
                         </Button>
                         <Button onClick={() => openModal(<RegisterForm />)} to='/register' size='huge' inverted>
-                            {t('home.homepage.register')}
+                            {t('nav.navbar.register')}
                         </Button>
                     </Fragment>
                 )}

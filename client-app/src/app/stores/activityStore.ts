@@ -161,6 +161,7 @@ export default class ActivityStore {
     }
 
     @action loadActivity = async (id: string) => {
+        console.log('attempt to get activity');
         let activity = this.getActivity(id);
 
         if (activity) {

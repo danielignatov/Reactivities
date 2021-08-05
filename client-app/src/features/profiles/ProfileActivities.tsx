@@ -61,7 +61,7 @@ const ProfileEvents = () => {
             {userActivities.map((activity: IUserActivity) => (
               <Card
                 as={Link}
-                to={`/activities/${activity.id}`}
+                to={`/activity/${activity.id}`}
                 key={activity.id}
               >
                 <Image

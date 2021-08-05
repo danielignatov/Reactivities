@@ -65,9 +65,9 @@ const ActivityForm: React.FC<RouteComponentProps<DetailParams>> = ({ match, hist
                 ...activity,
                 id: uuid()
             };
-            createActivity(newActivity).then(() => history.push(`/activities/${newActivity.id}`));
+            createActivity(newActivity).then(() => history.push(`/activity/${newActivity.id}`));
         } else {
-            editActivity(activity).then(() => history.push(`/activities/${activity.id}`));
+            editActivity(activity).then(() => history.push(`/activity/${activity.id}`));
         }
     }
 
@@ -133,7 +133,7 @@ const ActivityForm: React.FC<RouteComponentProps<DetailParams>> = ({ match, hist
                                 onClick={e => {
                                     e.preventDefault();
                                     activity.id
-                                      ? history.push(`/activities/${activity.id}`)
+                                      ? history.push(`/activity/${activity.id}`)
                                       : history.push('/activities');
                                   }}
                                 floated='right' 

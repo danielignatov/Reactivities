@@ -44,17 +44,13 @@ namespace API
         public IConfiguration Configuration { get; }
 
         // This method gets called by the runtime. Use this method to add services to the container.
-        // public void ConfigureDevelopmentServices(IServiceCollection services)
-        // {
-        //     services.AddDbContext<DataContext>(opt =>
-        //         opt.UseSqlite(Configuration.GetConnectionString("Default")
-        //     ));
-
-        //     ConfigureServices(services);
-        // }
-
-        public void ConfigureProductionServices(IServiceCollection services)
+        public void ConfigureServices(IServiceCollection services)
         {
+            // services.AddDbContext<DataContext>(opt =>
+            //     opt.UseSqlite(Configuration.GetConnectionString("Default")
+            // ));
+
+            // Database configuration
             var envName = Environment.GetEnvironmentVariable("ASPNETCORE_ENVIRONMENT");
 
             IConfigurationRoot configuration = new ConfigurationBuilder()
@@ -67,11 +63,6 @@ namespace API
                 opt.UseMySql(Configuration.GetConnectionString("Default")
             ));
 
-            ConfigureServices(services);
-        }
-
-        public void ConfigureServices(IServiceCollection services)
-        {
             services.AddControllers(opt =>
             {
                 var policy = new AuthorizationPolicyBuilder().RequireAuthenticatedUser().Build();

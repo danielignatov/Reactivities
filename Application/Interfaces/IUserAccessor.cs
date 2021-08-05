@@ -8,5 +8,7 @@ namespace Application.Interfaces
          string GetCurrentUsername();
 
          Task<AppUser> GetCurrentUserAsync();
+
+         bool IsUserLogged();
     }
 }

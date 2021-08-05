@@ -29,7 +29,7 @@ const ActivityDetails: React.FC<RouteComponentProps<DetailParams>> = ({ match, h
         return <h2>{t('activities.details.activitydetails.notfound')}</h2>
 
     return (
-        <Grid stackable={true}>
+        <Grid stackable={true} className='activity-details'>
             <Grid.Column width={10}>
                 <ActivityDetailedHeader activity={activity} />
                 <ActivityDetailedInfo activity={activity} />
