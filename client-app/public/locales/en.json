@@ -13,7 +13,8 @@
             "logoutbtn": "Logout",
             "guest": "Guest",
             "login": "Login",
-            "register": "Register"
+            "register": "Register",
+            "settingsbtn": "Settings"
         }
     },
     "profiles": {
@@ -61,13 +62,25 @@
             "logintositename": "Login to Reactivities",
             "submiterror": "Invalid email or password",
             "login": "Login",
-            "noaccount": "No account?"
+            "noaccount": "No account?",
+            "forgotpass": "Forgotten password?"
         },
         "registerform": {
             "signuptositename": "Sign up to Reactivities",
             "username": "Username",
             "displayname": "Display Name",
             "register": "Register"
+        },
+        "settingsform": {
+            "usersettings": "User settings"
+        },
+        "forgotpassform": {
+            "header": "Forgot password",
+            "emailinvalid": "Invalid email"
+        },
+        "resetpassform": {
+            "header": "Reset password",
+            "newpassword": "New password"
         }
     },
     "activities": {
@@ -133,7 +146,12 @@
         "cancel": "Cancel",
         "edit": "Edit",
         "email": "Email",
-        "password": "Password"
+        "password": "Password",
+        "save": "Save",
+        "send": "Send"
+    },
+    "form": {
+        "emailrequired": "Email field is required"
     },
     "loading": {
         "app": "Loading app..."

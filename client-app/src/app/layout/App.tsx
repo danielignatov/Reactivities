@@ -16,6 +16,9 @@ import ProfilePage from '../../features/profiles/ProfilePage';
 import PrivateRoute from './PrivateRoute';
 import { useTranslation } from 'react-i18next';
 import RegisterForm from '../../features/user/RegisterForm';
+import SettingsForm from '../../features/user/SettingsForm';
+import ForgotPassForm from '../../features/user/ForgotPassForm';
+import ResetPassForm from '../../features/user/ResetPassForm';
 
 const App: React.FC<RouteComponentProps> = ({ location }) => {
   const { t } = useTranslation();
@@ -62,6 +65,9 @@ const App: React.FC<RouteComponentProps> = ({ location }) => {
               <Route path='/profile/:username' component={ProfilePage} />
               <Route exact path='/login' component={LoginForm} />
               <Route exact path='/register' component={RegisterForm} />
+              <Route exact path='/forgotpass' component={ForgotPassForm} />
+              <Route path='/resetpass/:resetToken' component={ResetPassForm} />
+              <Route exact path='/settings' component={SettingsForm} />
               <Route component={NotFound} />
             </Switch>
           </Container>

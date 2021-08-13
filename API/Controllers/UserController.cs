@@ -1,5 +1,6 @@
 using System.Threading.Tasks;
 using Application.User;
+using MediatR;
 using Microsoft.AspNetCore.Authorization;
 using Microsoft.AspNetCore.Mvc;
 
@@ -25,6 +26,20 @@ namespace API.Controllers
         public async Task<ActionResult<User>> CurrentUser()
         {
             return await Mediator.Send(new CurrentUser.Query());
+        }
+
+        [AllowAnonymous]
+        [HttpPost("forgotpassword")]
+        public async Task<ActionResult<Unit>> ForgotPassword(ForgotPassword.Command command)
+        {
+            return await Mediator.Send(command);
+        }
+
+        [AllowAnonymous]
+        [HttpPost("resetpassword")]
+        public async Task<ActionResult<Unit>> ResetPassword(ResetPassword.Command command)
+        {
+            return await Mediator.Send(command);
         }
     }
 }

@@ -6,6 +6,7 @@ import { Container, Dropdown, Menu, Image } from "semantic-ui-react";
 import { RootStoreContext } from '../../app/stores/rootStore';
 import LoginForm from '../user/LoginForm';
 import RegisterForm from '../user/RegisterForm';
+import SettingsForm from '../user/SettingsForm';
 
 const NavBar: React.FC = () => {
   const { t } = useTranslation();
@@ -40,6 +41,12 @@ const NavBar: React.FC = () => {
                     to='/createActivity'
                     text={t('nav.navbar.createactivitybtn')}
                     icon='plus' />
+                  <Dropdown.Item
+                    as={Link}
+                    onClick={() => openModal(<SettingsForm />)}
+                    to='/settings'
+                    text={t('nav.navbar.settingsbtn')}
+                    icon='cog' />
                   <Dropdown.Item
                     onClick={logout}
                     text={t('nav.navbar.logoutbtn')}

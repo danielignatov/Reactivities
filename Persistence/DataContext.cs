@@ -24,6 +24,8 @@ namespace Persistence
 
         public DbSet<UserFollowing> Followings { get; set; }
 
+        public DbSet<AuthToken> AuthTokens { get; set; }
+
         protected override void OnConfiguring(DbContextOptionsBuilder options)
         {
             if (!options.IsConfigured)

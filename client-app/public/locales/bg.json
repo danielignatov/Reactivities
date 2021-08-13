@@ -13,7 +13,8 @@
             "logoutbtn": "Изход",
             "guest": "Гост",
             "login": "Вход",
-            "register": "Регистрация"
+            "register": "Регистрация",
+            "settingsbtn": "Настройки"
         }
     },
     "profiles": {
@@ -61,13 +62,25 @@
             "logintositename": "Вход в Reactivities",
             "submiterror": "Грешно име или парола",
             "login": "Вход",
-            "noaccount": "Нямате акаунт?"
+            "noaccount": "Нямате акаунт?",
+            "forgotpass": "Забравена парола?"
         },
         "registerform": {
             "signuptositename": "Регистрация в Reactivities",
             "username": "Потребителско име",
             "displayname": "Показано име",
             "register": "Регистрация"
+        },
+        "settingsform": {
+            "usersettings": "Потребителски настройки"
+        },
+        "forgotpassform": {
+            "header": "Забравена парола",
+            "emailinvalid": "Невалиден email"
+        },
+        "resetpassform": {
+            "header": "Смяна на парола",
+            "newpassword": "Нова парола"
         }
     },
     "activities": {
@@ -133,7 +146,12 @@
         "cancel": "Отказ",
         "edit": "Редакция",
         "email": "Email",
-        "password": "Парола"
+        "password": "Парола",
+        "save": "Запази",
+        "send": "Изпрати"
+    },
+    "form": {
+        "emailrequired": "Поле Email е задължително"
     },
     "loading": {
         "app": "Зарежда се..."

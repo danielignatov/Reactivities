@@ -31,6 +31,7 @@ using API.SignalR;
 using Application.Profiles;
 using Microsoft.AspNetCore.HttpOverrides;
 using System.IO;
+using Infrastructure.Notifications;
 
 namespace API
 {
@@ -43,6 +44,32 @@ namespace API
 
         public IConfiguration Configuration { get; }
 
+        public void ConfigureDevelopmentServices(IServiceCollection services)
+        {
+            var envName = Environment.GetEnvironmentVariable("ASPNETCORE_ENVIRONMENT");
+            var path = Path.Combine(Directory.GetCurrentDirectory());
+            IConfigurationRoot configuration = new ConfigurationBuilder()
+                .SetBasePath(Path.Combine(Directory.GetCurrentDirectory()))
+                .AddJsonFile("appsettings.json", optional: false, reloadOnChange: true)
+                .AddJsonFile($"appsettings.{envName}.json", optional: false, reloadOnChange: true)
+                .Build();
+
+            ConfigureServices(services);
+        }
+
+        public void ConfigureProductionServices(IServiceCollection services)
+        {
+            var envName = Environment.GetEnvironmentVariable("ASPNETCORE_ENVIRONMENT");
+
+            IConfigurationRoot configuration = new ConfigurationBuilder()
+                .SetBasePath(Path.Combine(Directory.GetCurrentDirectory()))
+                .AddJsonFile("appsettings.json", optional: false, reloadOnChange: true)
+                .AddJsonFile($"appsettings.{envName}.json", optional: false, reloadOnChange: true)
+                .Build();
+
+            ConfigureServices(services);
+        }
+
         // This method gets called by the runtime. Use this method to add services to the container.
         public void ConfigureServices(IServiceCollection services)
         {
@@ -51,14 +78,6 @@ namespace API
             // ));
 
             // Database configuration
-            var envName = Environment.GetEnvironmentVariable("ASPNETCORE_ENVIRONMENT");
-
-            IConfigurationRoot configuration = new ConfigurationBuilder()
-                .SetBasePath(Path.Combine(Directory.GetCurrentDirectory()))
-                .AddJsonFile("appsettings.json", optional: false)
-                .AddJsonFile($"appsettings.{envName}.json", optional: false)
-                .Build();
-
             services.AddDbContext<DataContext>(opt =>
                 opt.UseMySql(Configuration.GetConnectionString("Default")
             ));
@@ -146,9 +165,14 @@ namespace API
 
             services.AddScoped<IJwtGenerator, JwtGenerator>();
             services.AddScoped<IUserAccessor, UserAccessor>();
+            services.AddScoped<IEmailService, EmailService>();
+            services.AddScoped<IAuthTokenService, AuthTokenService>();
             services.AddScoped<IImageAccessor, ImageAccessor>();
             services.AddScoped<IProfileReader, ProfileReader>();
 
+            // Settings
+            services.AddOptions();
+            services.Configure<EmailServiceSettings>(Configuration.GetSection("SendInBlue"));
             services.Configure<CloudinarySettings>(Configuration.GetSection("Cloudinary"));
         }
 

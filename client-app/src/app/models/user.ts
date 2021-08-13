@@ -13,3 +13,18 @@ export interface IUserFormValues {
     username?: string;
     locale?: string;
 }
+
+export interface IUserSettingsFormValues {
+    locale: string;
+    oldPassword: string;
+    newPassword: string;
+}
+
+export interface IUserForgotPassFormValues {
+    email: string;
+}
+
+export interface IUserResetPassFormValues {
+    resetToken: string;
+    password: string;
+}

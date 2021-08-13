@@ -2,7 +2,7 @@ import axios, { AxiosRequestConfig, AxiosResponse } from 'axios';
 import { IActivitiesEnvelope, IActivity } from '../models/activity';
 import { history } from '../..';
 import { toast } from 'react-toastify';
-import { IUser, IUserFormValues } from '../models/user';
+import { IUser, IUserForgotPassFormValues, IUserFormValues, IUserResetPassFormValues, IUserSettingsFormValues } from '../models/user';
 import { IImage, IProfile } from '../models/profile';
 
 axios.defaults.baseURL = process.env.REACT_APP_API_URL;
@@ -78,7 +78,10 @@ const Activities = {
 const User = {
     current: (): Promise<IUser> => requests.get('/user'),
     login: (user: IUserFormValues): Promise<IUser> => requests.post('/user/login', user),
-    register: (user: IUserFormValues): Promise<IUser> => requests.post('/user/register', user)
+    register: (user: IUserFormValues): Promise<IUser> => requests.post('/user/register', user),
+    settings: (user: IUserSettingsFormValues): Promise<IUser> => requests.post('/user/settings', user),
+    forgotPassword: (values: IUserForgotPassFormValues) => requests.post('/user/forgotPassword', values),
+    resetPassword: (values: IUserResetPassFormValues) => requests.post('/user/resetPassword', values)
 }
 
 const Profiles = {

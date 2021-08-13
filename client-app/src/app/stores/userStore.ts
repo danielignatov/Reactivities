@@ -1,7 +1,7 @@
 import { action, computed, makeObservable, observable, runInAction } from "mobx";
 import { history } from "../..";
 import agent from "../api/agent";
-import { IUser, IUserFormValues } from "../models/user";
+import { IUser, IUserForgotPassFormValues, IUserFormValues, IUserResetPassFormValues, IUserSettingsFormValues } from "../models/user";
 import { RootStore } from "./rootStore";
 
 export default class UserStore {
@@ -30,6 +30,36 @@ export default class UserStore {
         }
     }
 
+    @action settings = async (values: IUserSettingsFormValues) => {
+        try {
+            const user = await agent.User.settings(values);
+            runInAction(() => {
+                this.user = user;
+            })
+            history.push('/');
+        } catch (error) {
+            throw error;
+        }
+    }
+
+    @action forgotPassword = async (values: IUserForgotPassFormValues) => {
+        try {
+            await agent.User.forgotPassword(values);
+            history.push('/');
+        } catch (error) {
+            throw error;
+        }
+    }
+
+    @action resetPassword = async (values: IUserResetPassFormValues) => {
+        try {
+            await agent.User.resetPassword(values);
+            history.push('/');
+        } catch (error) {
+            throw error;
+        }
+    }
+
     @action register = async (values: IUserFormValues) => {
         try {
             const user = await agent.User.register(values);
@@ -38,7 +68,7 @@ export default class UserStore {
             //})
             this.rootStore.commonStore.setToken(user.token);
             //this.rootStore.modalStore.closeModal();
-            history.push('/activities');
+            history.push('/');
         } catch (error) {
             throw error;
         }
