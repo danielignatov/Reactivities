@@ -29,7 +29,7 @@ namespace Application.Profiles
                 .SingleOrDefaultAsync(x => x.UserName == username);
 
             if (user == null)
-                throw new RestException(System.Net.HttpStatusCode.NotFound, new { User = "Not found" });
+                throw new RestException(System.Net.HttpStatusCode.NotFound, "User not found" );
 
             var currentUser = await _userAccessor.GetCurrentUserAsync();
 

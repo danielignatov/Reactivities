@@ -5,7 +5,7 @@ import { useContext } from 'react';
 import { RootStoreContext } from '../../../app/stores/rootStore';
 import { observer } from 'mobx-react-lite';
 import { useTranslation } from 'react-i18next';
-import LoginForm from '../../user/LoginForm';
+import LoginForm from '../../user/login/LoginForm';
 
 const ActivityFilters = () => {
   const { t } = useTranslation();

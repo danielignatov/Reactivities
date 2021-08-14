@@ -1,26 +1,38 @@
 import { AxiosResponse } from 'axios';
 import React from 'react';
+import { useTranslation } from 'react-i18next';
 import { Message } from 'semantic-ui-react';
 
 interface IProps {
-    error: AxiosResponse,
+    response: AxiosResponse,
+    title?: string,
     text?: string
 }
 
-const ErrorMessage: React.FC<IProps> = ({ error, text }) => {
+const ErrorMessage: React.FC<IProps> = ({ response, title, text }) => {
+    const { t, i18n } = useTranslation();
+    const { message, errors } = response.data;
+
+    //console.log(response.statusText, response.data.error, response.data.errors);
+
     return (
         <Message error>
-            <Message.Header>
-                {error.statusText}
-            </Message.Header>
-            {error.data && Object.keys(error.data.errors).length > 0 && (
-                <Message.List>
-                    {Object.values(error.data.errors).flat().map((err: any, i) => (
-                        <Message.Item key={i}>{err}</Message.Item>
-                    ))}
-                </Message.List>
-            )}
+            {title && <Message.Header content={title} />}
             {text && <Message.Content content={text} />}
+            {message && (
+                i18n.exists('api.' + message) ?
+                    <Message.Content content={t('api.' + message)} /> :
+                    <Message.Content content={message} />
+            )}
+            {errors && Object.keys(errors).length > 0 && (
+                Object.values(errors).flat().map((error: any, i) => (
+                    <Message.Content key={i}>{error && (
+                        i18n.exists('api.' + error) ?
+                            <Message.Content content={t('api.' + error)} /> :
+                            <Message.Content content={error} />
+                    )}</Message.Content>
+                ))
+            )}
         </Message>
     )
 }

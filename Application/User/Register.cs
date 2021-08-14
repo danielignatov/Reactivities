@@ -54,10 +54,10 @@ namespace Application.User
             public async Task<User> Handle(Command request, CancellationToken cancellationToken)
             {
                 if (await _context.Users.AnyAsync(x => x.Email == request.Email))
-                    throw new RestException(System.Net.HttpStatusCode.BadRequest, new { Email = "Email already exists" });
+                    throw new RestException(System.Net.HttpStatusCode.BadRequest, "Email already exists");
 
                 if (await _context.Users.AnyAsync(x => x.UserName == request.Username))
-                    throw new RestException(System.Net.HttpStatusCode.BadRequest, new { Username = "Username already exists" });
+                    throw new RestException(System.Net.HttpStatusCode.BadRequest, "Username already exists");
 
                 try
                 {
@@ -89,7 +89,7 @@ namespace Application.User
                 {
                     throw new RestException(
                         System.Net.HttpStatusCode.InternalServerError, 
-                        new { Message = "Problem creating user" });
+                        "Problem creating user");
                 }
             }
         }

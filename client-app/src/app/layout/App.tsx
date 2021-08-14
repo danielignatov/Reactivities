@@ -8,17 +8,17 @@ import ActivityForm from '../../features/activities/form/ActivityForm';
 import ActivityDetails from '../../features/activities/details/ActivityDetails';
 import NotFound from './NotFound';
 import { ToastContainer } from 'react-toastify';
-import LoginForm from '../../features/user/LoginForm'
 import { RootStoreContext } from '../stores/rootStore';
 import LoadingComponent from './LoadingComponent';
 import ModalContainer from '../common/modals/ModalContainer';
 import ProfilePage from '../../features/profiles/ProfilePage';
 import PrivateRoute from './PrivateRoute';
 import { useTranslation } from 'react-i18next';
-import RegisterForm from '../../features/user/RegisterForm';
 import SettingsForm from '../../features/user/SettingsForm';
 import ForgotPassForm from '../../features/user/ForgotPassForm';
 import ResetPassForm from '../../features/user/ResetPassForm';
+import LoginPage from '../../features/user/login/LoginPage';
+import RegisterPage from '../../features/user/register/RegisterPage';
 
 const App: React.FC<RouteComponentProps> = ({ location }) => {
   const { t } = useTranslation();
@@ -63,8 +63,8 @@ const App: React.FC<RouteComponentProps> = ({ location }) => {
                 component={ActivityForm}
               />
               <Route path='/profile/:username' component={ProfilePage} />
-              <Route exact path='/login' component={LoginForm} />
-              <Route exact path='/register' component={RegisterForm} />
+              <Route exact path='/login' component={LoginPage} />
+              <Route exact path='/register' component={RegisterPage} />
               <Route exact path='/forgotpass' component={ForgotPassForm} />
               <Route path='/resetpass/:resetToken' component={ResetPassForm} />
               <Route exact path='/settings' component={SettingsForm} />

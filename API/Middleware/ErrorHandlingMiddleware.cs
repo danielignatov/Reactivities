@@ -38,28 +38,28 @@ namespace API.Middleware
             Exception exception, 
             ILogger<ErrorHandlingMiddleware> logger)
         {
-            object errors = null;
+            string message = null;
 
             switch(exception)
             {
                 case RestException re:
                     logger.LogError(exception, "REST ERROR");
-                    errors = re.Errors;
+                    message = re.Error;
                     context.Response.StatusCode = (int)re.Code;
                     break;
                 case Exception e:
                     logger.LogError(exception, "SERVER ERROR");
-                    errors = string.IsNullOrWhiteSpace(e.Message) ? "Error" : e.Message;
+                    message = string.IsNullOrWhiteSpace(e.Message) ? "Error" : e.Message;
                     context.Response.StatusCode = (int)HttpStatusCode.InternalServerError;
                     break;
             }
 
             context.Response.ContentType = "application/json";
 
-            if (errors != null)
+            if (message != null)
             {
                 var result = JsonSerializer.Serialize(new {
-                    errors
+                    message
                 });
 
                 await context.Response.WriteAsync(result);

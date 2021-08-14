@@ -51,16 +51,17 @@ namespace Application.User
 
             public async Task<Unit> Handle(Command request, CancellationToken cancellationToken)
             {
+
+                var user =
+                await _context
+                .Users
+                .SingleOrDefaultAsync(x => x.Email == request.Email);
+
+                if (user == null)
+                    throw new RestException(System.Net.HttpStatusCode.BadRequest, "user not found");
+                
                 try
                 {
-                    var user = 
-                    await _context
-                    .Users
-                    .SingleOrDefaultAsync(x => x.Email == request.Email);
-
-                    if (user == null)
-                        throw new RestException(System.Net.HttpStatusCode.NotFound, new { user = "Not found" });
-
                     var resetToken =
                     await _authTokenService.CreateAuthTokenAsync(user.Id, 24);
 
@@ -79,8 +80,8 @@ namespace Application.User
                 catch (Exception)
                 {
                     throw new RestException(
-                        System.Net.HttpStatusCode.InternalServerError, 
-                        new { error = "Error during forgot password process." });
+                        System.Net.HttpStatusCode.InternalServerError,
+                        "Error during forgot password process.");
                 }
 
                 return Unit.Value;

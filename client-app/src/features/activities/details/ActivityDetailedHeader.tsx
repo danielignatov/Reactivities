@@ -6,7 +6,7 @@ import { IActivity } from '../../../app/models/activity';
 import { format } from 'date-fns';
 import { RootStoreContext } from '../../../app/stores/rootStore';
 import { useTranslation } from 'react-i18next';
-import LoginForm from '../../user/LoginForm';
+import LoginForm from '../../user/login/LoginForm';
 
 const activityImageStyle = {
     filter: 'brightness(30%)'

@@ -35,7 +35,7 @@ namespace Application.Images
                 var image = user.Images.FirstOrDefault(x => x.Id == request.Id);
 
                 if (image == null)
-                    throw new RestException(System.Net.HttpStatusCode.NotFound, new { Image = "Not found" });
+                    throw new RestException(System.Net.HttpStatusCode.NotFound, "Image not found");
 
                 var currentMain = user.Images.FirstOrDefault(x => x.IsMain);
 

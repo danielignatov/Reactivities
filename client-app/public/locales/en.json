@@ -60,10 +60,10 @@
     "user": {
         "loginform": {
             "logintositename": "Login to Reactivities",
-            "submiterror": "Invalid email or password",
             "login": "Login",
             "noaccount": "No account?",
-            "forgotpass": "Forgotten password?"
+            "forgotpass": "Forgotten password?",
+            "error": "Invalid email or password"
         },
         "registerform": {
             "signuptositename": "Sign up to Reactivities",
@@ -151,7 +151,7 @@
         "send": "Send"
     },
     "form": {
-        "emailrequired": "Email field is required"
+        "isrequiredfield": "is required field"
     },
     "loading": {
         "app": "Loading app..."
@@ -159,5 +159,10 @@
     "notfound": {
         "msg": "Oops - we've looked everywhere but couldn't find this.",
         "toallactivities": "Return to Activities page"
+    },
+    "api": {
+        "Email already exists": "Email already exists",
+        "Username already exists": "Username already exists",
+        "Problem creating user": "Problem creating user"
     }
 }

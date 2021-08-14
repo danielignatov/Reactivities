@@ -42,7 +42,7 @@ const ForgotPassForm = () => {
                             placeholder={t('common.email')}
                         />
                         {submitError && !dirtySinceLastSubmit && (
-                            <ErrorMessage error={submitError} text={t('user.resetpassform.emailinvalid')} />
+                            <ErrorMessage response={submitError} text={t('user.resetpassform.emailinvalid')} />
                         )}
 
                         <Button

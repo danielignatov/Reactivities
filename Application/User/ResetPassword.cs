@@ -72,7 +72,7 @@ namespace Application.User
                 {
                     throw new RestException(
                         System.Net.HttpStatusCode.InternalServerError,
-                        new { error = "Error during reset password process." });
+                        "Error during reset password process.");
                 }
 
                 return Unit.Value;

@@ -39,10 +39,10 @@ namespace Application.Images
                 var image = user.Images.FirstOrDefault(x => x.Id == request.Id);
 
                 if (image == null)
-                    throw new RestException(HttpStatusCode.NotFound, new { Image = "Not found" });
+                    throw new RestException(HttpStatusCode.NotFound, "Image not found");
 
                 if (image.IsMain)
-                    throw new RestException(HttpStatusCode.BadRequest, new { Image = "You cannot delete your main image" });
+                    throw new RestException(HttpStatusCode.BadRequest, "You cannot delete your main image");
 
                 var result = _imageAccessor.DeleteImage(request.Id);
 

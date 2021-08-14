@@ -4,8 +4,8 @@ import { useTranslation } from 'react-i18next';
 import { Link } from 'react-router-dom';
 import { Container, Dropdown, Menu, Image } from "semantic-ui-react";
 import { RootStoreContext } from '../../app/stores/rootStore';
-import LoginForm from '../user/LoginForm';
-import RegisterForm from '../user/RegisterForm';
+import LoginForm from '../user/login/LoginForm';
+import RegisterForm from '../user/register/RegisterForm';
 import SettingsForm from '../user/SettingsForm';
 
 const NavBar: React.FC = () => {
@@ -60,7 +60,6 @@ const NavBar: React.FC = () => {
               <Dropdown pointing='top left' text={t('nav.navbar.guest')} >
                 <Dropdown.Menu direction='left' >
                   <Dropdown.Item
-                    as={Link}
                     onClick={() => openModal(<LoginForm />)}
                     to='/login'
                     text={t('nav.navbar.login')}

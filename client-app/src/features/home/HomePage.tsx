@@ -3,8 +3,8 @@ import { observer } from 'mobx-react-lite';
 import { Button, Container, Header, Segment, Image } from 'semantic-ui-react';
 import { Link } from 'react-router-dom';
 import { RootStoreContext } from '../../app/stores/rootStore';
-import LoginForm from '../user/LoginForm';
-import RegisterForm from '../user/RegisterForm';
+import LoginForm from '../user/login/LoginForm';
+import RegisterForm from '../user/register/RegisterForm';
 import { useTranslation } from 'react-i18next';
 
 const HomePage = () => {

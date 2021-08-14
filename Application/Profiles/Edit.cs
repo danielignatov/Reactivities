@@ -46,7 +46,7 @@ namespace Application.Profiles
                 var appUser = await _userAccessor.GetCurrentUserAsync();
 
                 if (appUser == null)
-                    throw new RestException(HttpStatusCode.NotFound, new { appUser = "Not found" });
+                    throw new RestException(HttpStatusCode.NotFound, "AppUser not found");
 
                 appUser.Bio = request.Bio;
                 appUser.DisplayName = request.DisplayName ?? appUser.DisplayName;

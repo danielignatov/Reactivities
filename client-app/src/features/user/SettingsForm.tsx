@@ -46,7 +46,7 @@ const SettingsForm = () => {
                             fluid
                         />
                         {submitError && !dirtySinceLastSubmit && (
-                            <ErrorMessage error={submitError} text={t('user.loginform.submiterror')} />
+                            <ErrorMessage response={submitError} text={t('user.loginform.submiterror')} />
                         )}
 
                         <Button

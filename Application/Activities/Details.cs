@@ -42,7 +42,7 @@ namespace Application.Activities
                 .SingleOrDefaultAsync(x => x.Id == request.Id);
 
                 if (activity == null)
-                    throw new RestException(HttpStatusCode.NotFound, new { activity = "Not found" });
+                    throw new RestException(HttpStatusCode.NotFound, "Activity not found");
 
                 var activityToReturn = 
                     _mapper.Map<Activity, ActivityDto>(activity);

@@ -60,16 +60,20 @@
     "user": {
         "loginform": {
             "logintositename": "Вход в Reactivities",
-            "submiterror": "Грешно име или парола",
             "login": "Вход",
             "noaccount": "Нямате акаунт?",
-            "forgotpass": "Забравена парола?"
+            "forgotpass": "Забравена парола?",
+            "emailisrequired": "Email е задължително поле",
+            "passisrequired": "Парола е задължително поле",
+            "error": "Грешен email или парола"
         },
         "registerform": {
             "signuptositename": "Регистрация в Reactivities",
             "username": "Потребителско име",
             "displayname": "Показано име",
-            "register": "Регистрация"
+            "register": "Регистрация",
+            "emailisrequired": "Email е задължително поле",
+            "passisrequired": "Парола е задължително поле"
         },
         "settingsform": {
             "usersettings": "Потребителски настройки"
@@ -151,7 +155,7 @@
         "send": "Изпрати"
     },
     "form": {
-        "emailrequired": "Поле Email е задължително"
+        "isrequiredfield": "е задължително поле"
     },
     "loading": {
         "app": "Зарежда се..."
@@ -159,5 +163,10 @@
     "notfound": {
         "msg": "Упс - съдържанието не е намерено.",
         "toallactivities": "Върни се към всички събития"
+    },
+    "api": {
+        "Email already exists": "Email вече съществува",
+        "Username already exists": "Потребителското име е заето",
+        "Problem creating user": "Проблем при създаване на потребителя"
     }
 }

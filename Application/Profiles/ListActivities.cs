@@ -37,7 +37,7 @@ namespace Application.Profiles
                 .SingleOrDefaultAsync(x => x.UserName == request.Username);
 
                 if (user == null)
-                    throw new RestException(HttpStatusCode.NotFound, new { User = "Not found" });
+                    throw new RestException(HttpStatusCode.NotFound, "User not found");
 
                 var queryable = user.UserActivities
                     .OrderBy(a => a.Activity.Date)
