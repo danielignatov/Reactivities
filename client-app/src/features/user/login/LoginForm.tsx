@@ -39,6 +39,8 @@ const LoginForm = () => {
                             name='email'
                             component={TextInput}
                             placeholder={t('common.email')}
+                            type='email'
+                            autoFocus={true}
                         />
                         <Field
                             name='password'
@@ -58,6 +60,7 @@ const LoginForm = () => {
                             onClick={handleSubmit}
                             fluid
                             color='teal'
+                            type='submit'
                         />
                     </Form>
                 )}

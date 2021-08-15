@@ -76,7 +76,8 @@
             "passisrequired": "Парола е задължително поле"
         },
         "settingsform": {
-            "usersettings": "Потребителски настройки"
+            "usersettings": "Потребителски настройки",
+            "localeplaceholder": "Избери език"
         },
         "forgotpassform": {
             "header": "Забравена парола",
@@ -167,6 +168,11 @@
     "api": {
         "Email already exists": "Email вече съществува",
         "Username already exists": "Потребителското име е заето",
-        "Problem creating user": "Проблем при създаване на потребителя"
+        "Problem creating user": "Проблем при създаване на потребителя",
+        "Password must contain 5 characters": "Паролата трябва да съдържа поне 5 символа",
+        "Invalid email address": "Невалиден email адрес",
+        "Email is required": "Email е задължително поле",
+        "DisplayName is required": "Показвано име е задължително поле",
+        "Username is required": "Потребителско име е задължително поле"
     }
 }

@@ -11,7 +11,8 @@ interface IProps {
 
 const ErrorMessage: React.FC<IProps> = ({ response, title, text }) => {
     const { t, i18n } = useTranslation();
-    const { message, errors } = response.data;
+    const message = response.data?.message;
+    const errors = response.data?.errors;
 
     //console.log(response.statusText, response.data.error, response.data.errors);
 

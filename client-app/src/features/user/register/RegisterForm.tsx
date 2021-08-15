@@ -42,6 +42,7 @@ const RegisterForm = () => {
                             name='username'
                             component={TextInput}
                             placeholder={t('user.registerform.username')}
+                            autoFocus={true}
                         />
                         <Field
                             name='displayName'
@@ -71,6 +72,7 @@ const RegisterForm = () => {
                             onClick={handleSubmit}
                             fluid
                             color='teal'
+                            type='submit'
                         />
                         {/* <pre>{JSON.stringify(form.getState(), null, 2)}</pre> */}
                     </Form>

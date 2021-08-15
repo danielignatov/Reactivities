@@ -9,10 +9,11 @@ const TextInput: React.FC<IProps> = ({
     width,
     type,
     placeholder,
-    meta: { touched, error } }) => {
+    meta: { touched, error },
+    autoFocus }) => {
     return (
         <Form.Field error={touched && !!error} type={type} width={width}>
-            <input {...input} placeholder={placeholder} />
+            <input {...input} placeholder={placeholder} autoFocus={autoFocus} />
             {touched && error && (
                 <Label basic color='red'>
                     {error}

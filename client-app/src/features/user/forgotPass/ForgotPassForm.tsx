@@ -4,10 +4,10 @@ import { Form as FinalForm, Field } from 'react-final-form';
 import { useTranslation } from 'react-i18next';
 import { combineValidators, isRequired } from 'revalidate';
 import { Button, Form, Header } from 'semantic-ui-react';
-import ErrorMessage from '../../app/common/form/ErrorMessage';
-import TextInput from '../../app/common/form/TextInput';
-import { IUserForgotPassFormValues } from '../../app/models/user';
-import { RootStoreContext } from '../../app/stores/rootStore';
+import ErrorMessage from '../../../app/common/form/ErrorMessage';
+import TextInput from '../../../app/common/form/TextInput';
+import { IUserForgotPassFormValues } from '../../../app/models/user';
+import { RootStoreContext } from '../../../app/stores/rootStore';
 import { generatePath } from "react-router";
 
 const ForgotPassForm = () => {
@@ -40,6 +40,7 @@ const ForgotPassForm = () => {
                             name='email'
                             component={TextInput}
                             placeholder={t('common.email')}
+                            autoFocus={true}
                         />
                         {submitError && !dirtySinceLastSubmit && (
                             <ErrorMessage response={submitError} text={t('user.resetpassform.emailinvalid')} />
@@ -53,6 +54,7 @@ const ForgotPassForm = () => {
                             onClick={handleSubmit}
                             fluid
                             color='teal'
+                            type='submit'
                         />
                         
                     </Form>

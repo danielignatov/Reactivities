@@ -28,10 +28,18 @@ namespace Application.User
         {
             public CommandValidatior()
             {
-                RuleFor(x => x.DisplayName).NotEmpty();
-                RuleFor(x => x.Username).NotEmpty();
-                RuleFor(x => x.Email).NotEmpty().EmailAddress();
-                RuleFor(x => x.Password).Password();
+                RuleFor(x => x.DisplayName)
+                .NotEmpty().WithMessage("DisplayName is required");
+
+                RuleFor(x => x.Username)
+                .NotEmpty().WithMessage("Username is required");
+
+                RuleFor(x => x.Email)
+                .NotEmpty().WithMessage("Email is required")
+                .EmailAddress().WithMessage("Invalid email address");
+
+                RuleFor(x => x.Password)
+                .Password();
             }
         }
 

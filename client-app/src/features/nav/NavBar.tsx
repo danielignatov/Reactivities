@@ -6,7 +6,7 @@ import { Container, Dropdown, Menu, Image } from "semantic-ui-react";
 import { RootStoreContext } from '../../app/stores/rootStore';
 import LoginForm from '../user/login/LoginForm';
 import RegisterForm from '../user/register/RegisterForm';
-import SettingsForm from '../user/SettingsForm';
+import SettingsForm from '../user/settings/SettingsForm';
 
 const NavBar: React.FC = () => {
   const { t } = useTranslation();

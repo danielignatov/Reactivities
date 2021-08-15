@@ -14,11 +14,11 @@ import ModalContainer from '../common/modals/ModalContainer';
 import ProfilePage from '../../features/profiles/ProfilePage';
 import PrivateRoute from './PrivateRoute';
 import { useTranslation } from 'react-i18next';
-import SettingsForm from '../../features/user/SettingsForm';
-import ForgotPassForm from '../../features/user/ForgotPassForm';
-import ResetPassForm from '../../features/user/ResetPassForm';
 import LoginPage from '../../features/user/login/LoginPage';
 import RegisterPage from '../../features/user/register/RegisterPage';
+import ForgotPassPage from '../../features/user/forgotPass/ForgotPassPage';
+import ResetPassPage from '../../features/user/resetPass/ResetPassPage';
+import SettingsPage from '../../features/user/settings/SettingsPage';
 
 const App: React.FC<RouteComponentProps> = ({ location }) => {
   const { t } = useTranslation();
@@ -65,9 +65,9 @@ const App: React.FC<RouteComponentProps> = ({ location }) => {
               <Route path='/profile/:username' component={ProfilePage} />
               <Route exact path='/login' component={LoginPage} />
               <Route exact path='/register' component={RegisterPage} />
-              <Route exact path='/forgotpass' component={ForgotPassForm} />
-              <Route path='/resetpass/:resetToken' component={ResetPassForm} />
-              <Route exact path='/settings' component={SettingsForm} />
+              <Route exact path='/forgotpass' component={ForgotPassPage} />
+              <Route path='/resetpass/:resetToken' component={ResetPassPage} />
+              <PrivateRoute exact path='/settings' component={SettingsPage} />
               <Route component={NotFound} />
             </Switch>
           </Container>

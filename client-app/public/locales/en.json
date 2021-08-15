@@ -72,7 +72,8 @@
             "register": "Register"
         },
         "settingsform": {
-            "usersettings": "User settings"
+            "usersettings": "User settings",
+            "localeplaceholder": "Select language"
         },
         "forgotpassform": {
             "header": "Forgot password",
@@ -163,6 +164,11 @@
     "api": {
         "Email already exists": "Email already exists",
         "Username already exists": "Username already exists",
-        "Problem creating user": "Problem creating user"
+        "Problem creating user": "Problem creating user",
+        "Password must contain 5 characters": "Password must contain 5 characters",
+        "Invalid email address": "Invalid email address",
+        "Email is required": "Email is required",
+        "DisplayName is required": "DisplayName is required",
+        "Username is required": "Username is required"
     }
 }
