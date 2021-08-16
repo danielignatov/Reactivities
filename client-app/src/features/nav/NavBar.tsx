@@ -42,7 +42,6 @@ const NavBar: React.FC = () => {
                     text={t('nav.navbar.createactivitybtn')}
                     icon='plus' />
                   <Dropdown.Item
-                    as={Link}
                     onClick={() => openModal(<SettingsForm />)}
                     to='/settings'
                     text={t('nav.navbar.settingsbtn')}

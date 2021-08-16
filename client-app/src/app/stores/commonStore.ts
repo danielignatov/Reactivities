@@ -21,11 +21,17 @@ export default class CommonStore {
     }
 
     @observable token: string | null = window.localStorage.getItem('jwt');
+    @observable locale: string | null = window.localStorage.getItem('locale');
     @observable appLoaded = false;
     
     @action setToken = (token: string | null) => {
         window.localStorage.setItem('jwt', token!);
         this.token = token;
+    }
+
+    @action setLocale = (locale: string) => {
+        window.localStorage.setItem('locale', locale);
+        this.locale = locale;
     }
 
     @action setAppLoaded = () => {

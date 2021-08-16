@@ -24,18 +24,22 @@ export default class UserStore {
                 this.user = user;
             })
             this.rootStore.commonStore.setToken(user.token);
+            user.locale && this.rootStore.commonStore.setLocale(user.locale);
             history.push('/activities');
         } catch (error) {
             throw error;
         }
     }
 
-    @action settings = async (values: IUserSettingsFormValues) => {
+    @action editSettings = async (values: IUserSettingsFormValues) => {
         try {
             const user = await agent.User.settings(values);
             runInAction(() => {
                 this.user = user;
-            })
+            });
+
+            user.locale && this.rootStore.commonStore.setLocale(user.locale);
+
             history.push('/');
         } catch (error) {
             throw error;

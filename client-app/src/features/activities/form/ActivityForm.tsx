@@ -97,7 +97,7 @@ const ActivityForm: React.FC<RouteComponentProps<DetailParams>> = ({ match, hist
                                     options={category}
                                     name='category'
                                     placeholder={t('activities.form.activityform.category')}
-                                    value={activity.category} />
+                                    initialValue={activity.category} />
                                 <Form.Group widths='equal'>
                                     <Field
                                         component={DateInput}

@@ -73,7 +73,8 @@
         },
         "settingsform": {
             "usersettings": "User settings",
-            "localeplaceholder": "Select language"
+            "localeplaceholder": "Select language",
+            "localelabel": "Language"
         },
         "forgotpassform": {
             "header": "Forgot password",

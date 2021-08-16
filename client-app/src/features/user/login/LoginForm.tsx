@@ -11,8 +11,9 @@ import { IUserFormValues } from '../../../app/models/user';
 import { RootStoreContext } from '../../../app/stores/rootStore';
 
 const LoginForm = () => {
-    const { t } = useTranslation();
+    const { t, i18n } = useTranslation();
     const rootStore = useContext(RootStoreContext);
+    const { locale } = rootStore.commonStore;
     const { login } = rootStore.userStore;
     const { closeModal } = rootStore.modalStore;
 
@@ -26,7 +27,7 @@ const LoginForm = () => {
             <FinalForm
                 onSubmit={(values: IUserFormValues) => login(values).then(closeModal).catch(error => ({
                     [FORM_ERROR]: error
-                }))}
+                })).finally(() => {locale && i18n.changeLanguage(locale)})}
                 validate={validate}
                 render={({ handleSubmit, submitting, submitError, invalid, pristine, dirtySinceLastSubmit }) => (
                     <Form error>

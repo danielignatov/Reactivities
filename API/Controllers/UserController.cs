@@ -22,6 +22,12 @@ namespace API.Controllers
             return await Mediator.Send(command);
         }
 
+        [HttpPost("settings")]
+        public async Task<ActionResult<User>> Settings(Settings.Query command)
+        {
+            return await Mediator.Send(command);
+        }
+
         [HttpGet]
         public async Task<ActionResult<User>> CurrentUser()
         {

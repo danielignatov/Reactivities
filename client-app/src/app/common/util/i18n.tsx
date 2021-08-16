@@ -28,6 +28,9 @@ i18n
     },
     react: { 
       useSuspense: true
+    },
+    detection: {
+      lookupLocalStorage: 'locale'
     }
   });
 

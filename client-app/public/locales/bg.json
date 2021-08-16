@@ -77,7 +77,8 @@
         },
         "settingsform": {
             "usersettings": "Потребителски настройки",
-            "localeplaceholder": "Избери език"
+            "localeplaceholder": "Избери език",
+            "localelabel": "Език"
         },
         "forgotpassform": {
             "header": "Забравена парола",
