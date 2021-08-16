@@ -50,7 +50,7 @@ const ResetPassPage: React.FC<RouteComponentProps<ResetPassParams>> = ({ match }
                                     autoFocus={true}
                                 />
                                 {submitError && !dirtySinceLastSubmit && (
-                                    <ErrorMessage response={submitError} text={t('user.resetpassform.emailinvalid')} />
+                                    <ErrorMessage response={submitError} />
                                 )}
 
                                 <Button

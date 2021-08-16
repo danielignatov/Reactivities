@@ -81,8 +81,7 @@
             "localelabel": "Език"
         },
         "forgotpassform": {
-            "header": "Забравена парола",
-            "emailinvalid": "Невалиден email"
+            "header": "Забравена парола"
         },
         "resetpassform": {
             "header": "Смяна на парола",
@@ -174,6 +173,7 @@
         "Invalid email address": "Невалиден email адрес",
         "Email is required": "Email е задължително поле",
         "DisplayName is required": "Показвано име е задължително поле",
-        "Username is required": "Потребителско име е задължително поле"
+        "Username is required": "Потребителско име е задължително поле",
+        "User not found": "Потребителя не е намерен"
     }
 }

@@ -58,7 +58,7 @@ namespace Application.User
                 .SingleOrDefaultAsync(x => x.Email == request.Email);
 
                 if (user == null)
-                    throw new RestException(System.Net.HttpStatusCode.BadRequest, "user not found");
+                    throw new RestException(System.Net.HttpStatusCode.BadRequest, "User not found");
                 
                 try
                 {

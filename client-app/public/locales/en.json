@@ -77,8 +77,7 @@
             "localelabel": "Language"
         },
         "forgotpassform": {
-            "header": "Forgot password",
-            "emailinvalid": "Invalid email"
+            "header": "Forgot password"
         },
         "resetpassform": {
             "header": "Reset password",
@@ -170,6 +169,7 @@
         "Invalid email address": "Invalid email address",
         "Email is required": "Email is required",
         "DisplayName is required": "DisplayName is required",
-        "Username is required": "Username is required"
+        "Username is required": "Username is required",
+        "User not found": "User not found"
     }
 }
