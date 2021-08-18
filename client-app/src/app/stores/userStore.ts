@@ -49,7 +49,6 @@ export default class UserStore {
     @action forgotPassword = async (values: IUserForgotPassFormValues) => {
         try {
             await agent.User.forgotPassword(values);
-            history.push('/');
         } catch (error) {
             throw error;
         }
@@ -58,7 +57,6 @@ export default class UserStore {
     @action resetPassword = async (values: IUserResetPassFormValues) => {
         try {
             await agent.User.resetPassword(values);
-            history.push('/');
         } catch (error) {
             throw error;
         }

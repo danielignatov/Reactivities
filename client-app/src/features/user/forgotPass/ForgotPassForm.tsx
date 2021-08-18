@@ -9,6 +9,7 @@ import TextInput from '../../../app/common/form/TextInput';
 import { IUserForgotPassFormValues } from '../../../app/models/user';
 import { RootStoreContext } from '../../../app/stores/rootStore';
 import { generatePath } from "react-router";
+import { toast } from 'react-toastify';
 
 const ForgotPassForm = () => {
     const { t } = useTranslation();
@@ -18,16 +19,16 @@ const ForgotPassForm = () => {
     const resetPasswordUrl = `${window.location.origin.toString()}${generatePath("/resetpass/")}`;
 
     const validate = combineValidators({
-        email: isRequired({ message: t('form.emailrequired') })
+        email: isRequired({ message: `${t('common.email')} ${t('form.isrequiredfield')}` })
     })
 
     return (
         <React.Fragment>
             <FinalForm
                 initialValues={{ resetPasswordUrl }}
-                onSubmit={(values: IUserForgotPassFormValues) => forgotPassword(values).then(closeModal).catch(error => ({
+                onSubmit={(values: IUserForgotPassFormValues) => forgotPassword(values).catch(error => ({
                     [FORM_ERROR]: error
-                }))}
+                })).then(() => toast.success(t('user.forgotpassform.emailsent'))).then(closeModal)}
                 validate={validate}
                 render={({ handleSubmit, submitting, submitError, invalid, pristine, dirtySinceLastSubmit }) => (
                     <Form error>

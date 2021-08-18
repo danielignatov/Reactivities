@@ -3,9 +3,10 @@ import React, { Fragment, useContext } from 'react';
 import { Item, Label } from 'semantic-ui-react';
 import { RootStoreContext } from '../../../app/stores/rootStore';
 import ActivityListItem from './ActivityListItem';
-import { format } from 'date-fns';
+import { useTranslation } from 'react-i18next';
 
 const ActivityList: React.FC = () => {
+    const { t } = useTranslation();
     const rootStore = useContext(RootStoreContext);
     const { activitiesByDate } = rootStore.activityStore;
     return (
@@ -13,7 +14,7 @@ const ActivityList: React.FC = () => {
             {activitiesByDate.map(([group, activities]) => (
                 <Fragment key={group}>
                     <Label size='large' color='blue'>
-                        {format(new Date(group), 'eeee do MMMM')}
+                        {t('activities.dashboard.activitylist.date', {date: new Date(group)})}
                     </Label>
 
                     <Item.Group divided>

@@ -77,7 +77,8 @@
             "localelabel": "Language"
         },
         "forgotpassform": {
-            "header": "Forgot password"
+            "header": "Forgot password",
+            "emailsent": "Reset password email has been sent"
         },
         "resetpassform": {
             "header": "Reset password",
@@ -96,10 +97,14 @@
                 "imhosting": "I'm hosting",
                 "selectdate": "Select Date"
             },
+            "activitylist": {
+                "date": "{{ date, eeee do MMMM }}"
+            },
             "activitylistitem": {
                 "hostedbyyou": "You are hosting this activity",
                 "youaregoing": "You are going to this activity",
-                "hostedby": "Hosted by"
+                "hostedby": "Hosted by",
+                "time": "{{ date, h:mm a }}"
             }
         },
         "details": {

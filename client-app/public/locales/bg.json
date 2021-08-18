@@ -81,7 +81,8 @@
             "localelabel": "Език"
         },
         "forgotpassform": {
-            "header": "Забравена парола"
+            "header": "Забравена парола",
+            "emailsent": "Изпратен еmail за подновяване на парола"
         },
         "resetpassform": {
             "header": "Смяна на парола",
@@ -100,10 +101,14 @@
                 "imhosting": "Където съм домакин",
                 "selectdate": "Избери дата"
             },
+            "activitylist": {
+                "date": "{{ date, eeee do MMMM }}"
+            },
             "activitylistitem": {
                 "hostedbyyou": "Вие сте домакин",
                 "youaregoing": "Вие ще присъствате",
-                "hostedby": "Домакин"
+                "hostedby": "Домакин",
+                "time": "{{ date, HH:mm }} ч."
             }
         },
         "details": {

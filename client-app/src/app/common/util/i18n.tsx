@@ -2,6 +2,8 @@ import i18n from 'i18next';
 import { initReactI18next } from 'react-i18next';
 import LanguageDetector from 'i18next-browser-languagedetector';
 import Backend from 'i18next-http-backend';
+import { format as formatDate, formatDistance, formatRelative, isDate } from "date-fns";
+import { enGB, bg } from "date-fns/locale";
 
 i18n
   // i18next-http-backend
@@ -20,13 +22,33 @@ i18n
     fallbackLng: 'en',
     interpolation: {
       escapeValue: false, // not needed for react as it escapes by default
+      format: function (value, format: any, lng) {
+        if (lng && isDate(value)) {
+          const locale: Locale = (lng === 'bg') ? bg : enGB;
+          
+          if (format === "short")
+            return formatDate(value, "P", { locale });
+          if (format === "long")
+            return formatDate(value, "PPPP", { locale });
+          if (format === "relative")
+            return formatRelative(value, new Date(), { locale });
+          if (format === "ago")
+            return formatDistance(value, new Date(), {
+              locale,
+              addSuffix: true
+            });
+
+          return formatDate(value, format, { locale });
+        }
+        return value;
+      }
     },
     backend: {
       // for all available options read the backend's repository readme file
       loadPath: '/locales/{{lng}}.json',
       crossDomain: false
     },
-    react: { 
+    react: {
       useSuspense: true
     },
     detection: {

@@ -9,6 +9,7 @@ import ErrorMessage from '../../../app/common/form/ErrorMessage';
 import TextInput from '../../../app/common/form/TextInput';
 import { IUserResetPassFormValues } from '../../../app/models/user';
 import { RootStoreContext } from '../../../app/stores/rootStore';
+import LoginForm from '../login/LoginForm';
 
 interface ResetPassParams {
     resetToken: string;
@@ -18,10 +19,10 @@ const ResetPassPage: React.FC<RouteComponentProps<ResetPassParams>> = ({ match }
     const { t } = useTranslation();
     const rootStore = useContext(RootStoreContext);
     const { resetPassword } = rootStore.userStore;
-    const { closeModal } = rootStore.modalStore;
+    const { openModal } = rootStore.modalStore;
 
     const validate = combineValidators({
-        password: isRequired({ message: t('form.passrequired') })
+        password: isRequired({ message: `${t('common.password')} ${t('form.isrequiredfield')}` })
     })
 
     return (
@@ -31,9 +32,9 @@ const ResetPassPage: React.FC<RouteComponentProps<ResetPassParams>> = ({ match }
                 <GridColumn computer={8} tablet={16} mobile={16}>
                     <FinalForm
                         initialValues={{ resetToken: match.params.resetToken }}
-                        onSubmit={(values: IUserResetPassFormValues) => resetPassword(values).then(closeModal).catch(error => ({
+                        onSubmit={(values: IUserResetPassFormValues) => resetPassword(values).catch(error => ({
                             [FORM_ERROR]: error
-                        }))}
+                        })).then(() => openModal(<LoginForm />))}
                         validate={validate}
                         render={({ handleSubmit, submitting, submitError, invalid, pristine, dirtySinceLastSubmit }) => (
                             <Form error>
