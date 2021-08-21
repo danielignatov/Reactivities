@@ -210,7 +210,7 @@ namespace API
                 .CustomSources("https://res.cloudinary.com", "blob:", "data:"))
                 .ScriptSources(s => s
                 .Self()
-                .CustomSources("sha256-GQiIKyZxKjSwNCFWuNn8heHE2X2DfS9548rycfsyXvA="))
+                .CustomSources("sha256-GQiIKyZxKjSwNCFWuNn8heHE2X2DfS9548rycfsyXvA=", "sha256-mxUxQYbb+kgrto8a3C1yUt2Rv+HsXa3JIj2Q6oL/cOs="))
             );
 
             //app.UseHttpsRedirection();

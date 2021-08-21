@@ -4,6 +4,7 @@ using System.Threading.Tasks;
 using Application.Enums;
 using Application.Errors;
 using Application.Interfaces;
+using Application.Validators;
 using Domain;
 using FluentValidation;
 using MediatR;
@@ -26,7 +27,7 @@ namespace Application.User
             public CommandValidator()
             {
                 RuleFor(x => x.ResetToken).NotEmpty();
-                RuleFor(x => x.Password).NotEmpty();
+                RuleFor(x => x.Password).Password();
             }
         }
 
@@ -66,6 +67,18 @@ namespace Application.User
 
                         var result =
                         await _userManager.UpdateAsync(user);
+                    }
+                    else if (tokenValidationResult == AuthTokenValidationResult.Expired)
+                    {
+                        throw new RestException(
+                            System.Net.HttpStatusCode.BadRequest,
+                            "Expired auth token");
+                    }
+                    else
+                    {
+                        throw new RestException(
+                            System.Net.HttpStatusCode.BadRequest,
+                            "Invalid auth token");
                     }
                 }
                 catch (Exception)

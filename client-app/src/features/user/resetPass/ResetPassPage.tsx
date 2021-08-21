@@ -4,7 +4,7 @@ import { Form as FinalForm, Field } from 'react-final-form';
 import { useTranslation } from 'react-i18next';
 import { RouteComponentProps } from 'react-router-dom';
 import { combineValidators, isRequired } from 'revalidate';
-import { Button, Form, Grid, GridColumn, Header } from 'semantic-ui-react';
+import { Button, Form, Grid, GridColumn, Header, Message } from 'semantic-ui-react';
 import ErrorMessage from '../../../app/common/form/ErrorMessage';
 import TextInput from '../../../app/common/form/TextInput';
 import { IUserResetPassFormValues } from '../../../app/models/user';
@@ -32,11 +32,11 @@ const ResetPassPage: React.FC<RouteComponentProps<ResetPassParams>> = ({ match }
                 <GridColumn computer={8} tablet={16} mobile={16}>
                     <FinalForm
                         initialValues={{ resetToken: match.params.resetToken }}
-                        onSubmit={(values: IUserResetPassFormValues) => resetPassword(values).catch(error => ({
+                        onSubmit={(values: IUserResetPassFormValues) => resetPassword(values).then(() => openModal(<LoginForm />)).catch(error => ({
                             [FORM_ERROR]: error
-                        })).then(() => openModal(<LoginForm />))}
+                        }))}
                         validate={validate}
-                        render={({ handleSubmit, submitting, submitError, invalid, pristine, dirtySinceLastSubmit }) => (
+                        render={({ handleSubmit, submitting, submitError, invalid, dirtySinceLastSubmit, submitSucceeded }) => (
                             <Form error>
                                 <Header
                                     as='h2'
@@ -50,12 +50,13 @@ const ResetPassPage: React.FC<RouteComponentProps<ResetPassParams>> = ({ match }
                                     type='password'
                                     autoFocus={true}
                                 />
+                                
                                 {submitError && !dirtySinceLastSubmit && (
                                     <ErrorMessage response={submitError} />
                                 )}
 
                                 <Button
-                                    disabled={(invalid && !dirtySinceLastSubmit) || pristine}
+                                    disabled={(invalid && !dirtySinceLastSubmit) || submitSucceeded}
                                     loading={submitting}
                                     positive
                                     content={t('common.save')}

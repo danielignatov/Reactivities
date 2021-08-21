@@ -3,13 +3,12 @@ import React, { useContext } from 'react';
 import { Form as FinalForm, Field } from 'react-final-form';
 import { useTranslation } from 'react-i18next';
 import { combineValidators, isRequired } from 'revalidate';
-import { Button, Form, Header } from 'semantic-ui-react';
+import { Button, Form, Header, Message } from 'semantic-ui-react';
 import ErrorMessage from '../../../app/common/form/ErrorMessage';
 import TextInput from '../../../app/common/form/TextInput';
 import { IUserForgotPassFormValues } from '../../../app/models/user';
 import { RootStoreContext } from '../../../app/stores/rootStore';
 import { generatePath } from "react-router";
-import { toast } from 'react-toastify';
 
 const ForgotPassForm = () => {
     const { t } = useTranslation();
@@ -26,11 +25,11 @@ const ForgotPassForm = () => {
         <React.Fragment>
             <FinalForm
                 initialValues={{ resetPasswordUrl }}
-                onSubmit={(values: IUserForgotPassFormValues) => forgotPassword(values).catch(error => ({
+                onSubmit={(values: IUserForgotPassFormValues) => forgotPassword(values).then(closeModal).catch(error => ({
                     [FORM_ERROR]: error
-                })).then(() => toast.success(t('user.forgotpassform.emailsent'))).then(closeModal)}
+                }))}
                 validate={validate}
-                render={({ handleSubmit, submitting, submitError, invalid, pristine, dirtySinceLastSubmit }) => (
+                render={({ handleSubmit, submitting, submitError, invalid, dirtySinceLastSubmit, submitSucceeded }) => (
                     <Form error>
                         <Header
                             as='h2'
@@ -43,12 +42,17 @@ const ForgotPassForm = () => {
                             placeholder={t('common.email')}
                             autoFocus={true}
                         />
+
                         {submitError && !dirtySinceLastSubmit && (
                             <ErrorMessage response={submitError} />
                         )}
 
+                        {submitSucceeded && (
+                            <Message success content={t('user.forgotpassform.emailsent')} />
+                        )}
+
                         <Button
-                            disabled={(invalid && !dirtySinceLastSubmit) || pristine}
+                            disabled={(invalid && !dirtySinceLastSubmit) || submitSucceeded}
                             loading={submitting}
                             positive
                             content={t('common.send')}

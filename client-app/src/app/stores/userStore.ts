@@ -50,6 +50,7 @@ export default class UserStore {
         try {
             await agent.User.forgotPassword(values);
         } catch (error) {
+            console.error(error);
             throw error;
         }
     }
