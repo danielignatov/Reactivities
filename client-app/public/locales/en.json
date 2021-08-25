@@ -29,8 +29,20 @@
             "about": "About",
             "nobio": "Apparently, this user prefers to keep an air of mystery about them."
         },
+        "profileactivities": {
+            "futureevents": "Future Events",
+            "pastevents": "Past Events",
+            "hosting": "Hosting"
+        },
         "profilecard": {
             "followers": "Followers"
+        },
+        "profilecontent": {
+            "about": "About",
+            "photos": "Photos",
+            "activities": "Activities",
+            "followers": "Followers",
+            "following": "Following"
         },
         "profilefollowings": {
             "peoplefollowing": "People following",
@@ -118,7 +130,8 @@
                 "hostedby": "Hosted by",
                 "manageevent": "Manage Event",
                 "cancelattendance": "Cancel attendance",
-                "joinactivity": "Join Activity"
+                "joinactivity": "Join Activity",
+                "date": "{{ date, eeee do MMMM }}"
             },
             "activitydetailedsidebar": {
                 "person": "Person",

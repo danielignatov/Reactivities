@@ -12,3 +12,4 @@ API/appsettings.Production.json
 client-app/.eslintcache
 wwwroot
 publish
+Dockerfile

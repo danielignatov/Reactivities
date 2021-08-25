@@ -5,14 +5,17 @@ import { Link } from 'react-router-dom';
 import { IUserActivity } from '../../app/models/profile';
 import { format } from 'date-fns';
 import { RootStoreContext } from '../../app/stores/rootStore';
-
-const panes = [
-  { menuItem: 'Future Events', pane: { key: 'futureEvents' } },
-  { menuItem: 'Past Events', pane: { key: 'pastEvents' } },
-  { menuItem: 'Hosting', pane: { key: 'hosted' } }
-];
+import { useTranslation } from 'react-i18next';
 
 const ProfileEvents = () => {
+  const { t } = useTranslation();
+
+  const panes = [
+    { menuItem: t('profiles.profileactivities.futureevents'), pane: { key: 'futureEvents' } },
+    { menuItem: t('profiles.profileactivities.pastevents'), pane: { key: 'pastEvents' } },
+    { menuItem: t('profiles.profileactivities.hosting'), pane: { key: 'hosted' } }
+  ];
+  
   const rootStore = useContext(RootStoreContext);
   const {
     loadUserActivities,

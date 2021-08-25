@@ -4,7 +4,7 @@ import { Form as FinalForm, Field } from 'react-final-form';
 import { useTranslation } from 'react-i18next';
 import { RouteComponentProps } from 'react-router-dom';
 import { combineValidators, isRequired } from 'revalidate';
-import { Button, Form, Grid, GridColumn, Header, Message } from 'semantic-ui-react';
+import { Button, Form, Grid, GridColumn, Header } from 'semantic-ui-react';
 import ErrorMessage from '../../../app/common/form/ErrorMessage';
 import TextInput from '../../../app/common/form/TextInput';
 import { IUserResetPassFormValues } from '../../../app/models/user';

@@ -5,20 +5,23 @@ import ProfileAbout from './ProfileAbout';
 import ProfileActivities from './ProfileActivities';
 import ProfileFollowings from './ProfileFollowings';
 import ProfilePhotos from './ProfilePhotos';
-
-const panes = [
-    {menuItem: 'About', render: () => <ProfileAbout /> },
-    {menuItem: 'Photos', render: () => <ProfilePhotos /> },
-    {menuItem: 'Activities', render: () => <ProfileActivities />},
-    {menuItem: 'Followers', render: () => <ProfileFollowings />},
-    {menuItem: 'Following', render: () => <ProfileFollowings />}
-]
+import { useTranslation } from 'react-i18next';
 
 interface IProps {
     setActiveTab: (activeIndex: any) => void;
 }
 
 const ProfileContent: React.FC<IProps> = ({setActiveTab}) => {
+    const { t } = useTranslation();
+
+    const panes = [
+        {menuItem: t('profiles.profilecontent.about'), render: () => <ProfileAbout /> },
+        {menuItem: t('profiles.profilecontent.photos'), render: () => <ProfilePhotos /> },
+        {menuItem: t('profiles.profilecontent.activities'), render: () => <ProfileActivities />},
+        {menuItem: t('profiles.profilecontent.followers'), render: () => <ProfileFollowings />},
+        {menuItem: t('profiles.profilecontent.following'), render: () => <ProfileFollowings />}
+    ];
+
     return (
         <Tab 
             menu={{fluid: true, vertical: true }} 

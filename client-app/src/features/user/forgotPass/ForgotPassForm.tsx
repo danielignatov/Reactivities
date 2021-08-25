@@ -14,18 +14,17 @@ const ForgotPassForm = () => {
     const { t } = useTranslation();
     const rootStore = useContext(RootStoreContext);
     const { forgotPassword } = rootStore.userStore;
-    const { closeModal } = rootStore.modalStore;
     const resetPasswordUrl = `${window.location.origin.toString()}${generatePath("/resetpass/")}`;
 
     const validate = combineValidators({
         email: isRequired({ message: `${t('common.email')} ${t('form.isrequiredfield')}` })
-    })
+    });
 
     return (
         <React.Fragment>
             <FinalForm
                 initialValues={{ resetPasswordUrl }}
-                onSubmit={(values: IUserForgotPassFormValues) => forgotPassword(values).then(closeModal).catch(error => ({
+                onSubmit={(values: IUserForgotPassFormValues) => forgotPassword(values).catch(error => ({
                     [FORM_ERROR]: error
                 }))}
                 validate={validate}
@@ -48,7 +47,7 @@ const ForgotPassForm = () => {
                         )}
 
                         {submitSucceeded && (
-                            <Message success content={t('user.forgotpassform.emailsent')} />
+                            <Message positive={true} content={t('user.forgotpassform.emailsent')} />
                         )}
 
                         <Button

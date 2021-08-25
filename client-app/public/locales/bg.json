@@ -29,8 +29,20 @@
             "about": "Относно",
             "nobio": "Изглежда потребителя не е въвел биография."
         },
+        "profileactivities": {
+            "futureevents": "Бъдещи събития",
+            "pastevents": "Минали събития",
+            "hosting": "Домакин"
+        },
         "profilecard": {
             "followers": "Последователи"
+        },
+        "profilecontent": {
+            "about": "Относно",
+            "photos": "Снимки",
+            "activities": "Събития",
+            "followers": "Последователи",
+            "following": "Следва"
         },
         "profilefollowings": {
             "peoplefollowing": "Хора следващи",
@@ -122,7 +134,8 @@
                 "hostedby": "Домакин",
                 "manageevent": "Редакция",
                 "cancelattendance": "Отказ от присъствие",
-                "joinactivity": "Заяви присъствие"
+                "joinactivity": "Заяви присъствие",
+                "date": "{{ date, eeee do MMMM }}"
             },
             "activitydetailedsidebar": {
                 "person": "Лице",

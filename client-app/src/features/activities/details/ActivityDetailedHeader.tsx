@@ -3,7 +3,6 @@ import React, { useContext } from 'react';
 import { Link } from 'react-router-dom';
 import { Button, Header, Item, Segment, Image } from 'semantic-ui-react';
 import { IActivity } from '../../../app/models/activity';
-import { format } from 'date-fns';
 import { RootStoreContext } from '../../../app/stores/rootStore';
 import { useTranslation } from 'react-i18next';
 import LoginForm from '../../user/login/LoginForm';
@@ -42,7 +41,7 @@ const ActivityDetailedHeader: React.FC<{ activity: IActivity }> = ({ activity })
                                     content={activity.title}
                                     style={{ color: 'white' }}
                                 />
-                                <p>{format(activity.date, 'eeee do MMMM')}</p>
+                                <p>{t('activities.details.activitydetailedheader.date', {date: new Date(activity.date)})}</p>
                                 <p>
                                     {t('activities.details.activitydetailedheader.hostedby')} <Link to={`/profile/${host.username}`}><strong>{host.displayName}</strong></Link>
                                 </p>
