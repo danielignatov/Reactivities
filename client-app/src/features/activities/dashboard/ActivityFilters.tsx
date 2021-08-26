@@ -1,6 +1,6 @@
 import { Fragment } from 'react';
 import { Menu, Header } from 'semantic-ui-react';
-import { Calendar } from 'react-widgets';
+import Calendar from 'react-calendar';
 import { useContext } from 'react';
 import { RootStoreContext } from '../../../app/stores/rootStore';
 import { observer } from 'mobx-react-lite';
@@ -8,7 +8,7 @@ import { useTranslation } from 'react-i18next';
 import LoginForm from '../../user/login/LoginForm';
 
 const ActivityFilters = () => {
-  const { t } = useTranslation();
+  const { t, i18n } = useTranslation();
   const rootStore = useContext(RootStoreContext);
   const { predicate, setPredicate } = rootStore.activityStore;
   const { isLoggedIn } = rootStore.userStore;
@@ -47,8 +47,10 @@ const ActivityFilters = () => {
       </Menu>
       <Header icon={'calendar'} attached color={'teal'} content={t('activities.dashboard.activityfilters.selectdate')} />
       <Calendar
-        onChange={(date) => setPredicate('startDate', date!)}
-        value={predicate.get('startDate') || new Date()} />
+        locale={i18n.language}
+        onChange={(date: any) => setPredicate('startDate', date!)}
+        value={predicate.get('startDate') || new Date()} 
+        />
     </Fragment>
   );
 }
