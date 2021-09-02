@@ -5,7 +5,6 @@ import { Link } from 'react-router-dom';
 import { IUserActivity } from '../../app/models/profile';
 import { RootStoreContext } from '../../app/stores/rootStore';
 import { useTranslation } from 'react-i18next';
-import { format } from 'date-fns';
 
 const ProfileEvents = () => {
   const { t } = useTranslation();
