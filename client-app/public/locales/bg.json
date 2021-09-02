@@ -32,7 +32,9 @@
         "profileactivities": {
             "futureevents": "Бъдещи събития",
             "pastevents": "Минали събития",
-            "hosting": "Домакин"
+            "hosting": "Домакин",
+            "date": "{{ date, do LLL }}",
+            "time": "{{ date, HH:mm }}"
         },
         "profilecard": {
             "followers": "Последователи"
@@ -136,6 +138,9 @@
                 "cancelattendance": "Отказ от присъствие",
                 "joinactivity": "Заяви присъствие",
                 "date": "{{ date, eeee do MMMM }}"
+            },
+            "activitydetailedinfo": {
+                "date": "{{ date, eeee do MMMM }} от {{ date, HH:mm }} ч."
             },
             "activitydetailedsidebar": {
                 "person": "Лице",

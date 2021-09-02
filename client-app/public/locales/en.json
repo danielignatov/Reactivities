@@ -32,7 +32,9 @@
         "profileactivities": {
             "futureevents": "Future Events",
             "pastevents": "Past Events",
-            "hosting": "Hosting"
+            "hosting": "Hosting",
+            "date": "{{ date, do LLL }}",
+            "time": "{{ date, h:mm a }}"
         },
         "profilecard": {
             "followers": "Followers"
@@ -132,6 +134,9 @@
                 "cancelattendance": "Cancel attendance",
                 "joinactivity": "Join Activity",
                 "date": "{{ date, eeee do MMMM }}"
+            },
+            "activitydetailedinfo": {
+                "date": "{{ date, eeee do MMMM }} at {{ date, h:mm a }}"
             },
             "activitydetailedsidebar": {
                 "person": "Person",

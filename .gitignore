@@ -13,3 +13,5 @@ client-app/.eslintcache
 wwwroot
 publish
 Dockerfile
+docker-compose.debug.yml
+docker-compose.yml

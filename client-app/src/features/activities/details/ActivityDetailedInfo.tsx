@@ -1,10 +1,12 @@
-import { format } from 'date-fns';
 import { observer } from 'mobx-react-lite';
 import React from 'react';
 import { Segment, Grid, Icon } from 'semantic-ui-react';
 import { IActivity } from '../../../app/models/activity';
+import { useTranslation } from 'react-i18next';
 
 const ActivityDetailedInfo: React.FC<{ activity: IActivity }> = ({ activity }) => {
+    const { t } = useTranslation();
+
     return (
         <Segment.Group>
             <Segment attached='top'>
@@ -24,7 +26,7 @@ const ActivityDetailedInfo: React.FC<{ activity: IActivity }> = ({ activity }) =
                     </Grid.Column>
                     <Grid.Column width={14}>
                         <span>
-                            {format(activity.date, 'eeee do MMMM')} at {format(activity.date, 'h:mm a')}
+                            {t('activities.details.activitydetailedinfo.date', { date: activity.date })}
                         </span>
                     </Grid.Column>
                 </Grid>

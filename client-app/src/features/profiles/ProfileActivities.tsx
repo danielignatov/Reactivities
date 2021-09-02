@@ -3,9 +3,9 @@ import { observer } from 'mobx-react-lite';
 import { Tab, Grid, Header, Card, Image, TabProps } from 'semantic-ui-react';
 import { Link } from 'react-router-dom';
 import { IUserActivity } from '../../app/models/profile';
-import { format } from 'date-fns';
 import { RootStoreContext } from '../../app/stores/rootStore';
 import { useTranslation } from 'react-i18next';
+import { format } from 'date-fns';
 
 const ProfileEvents = () => {
   const { t } = useTranslation();
@@ -74,8 +74,8 @@ const ProfileEvents = () => {
                 <Card.Content>
                   <Card.Header textAlign='center'>{activity.title}</Card.Header>
                   <Card.Meta textAlign='center'>
-                    <div>{format(new Date(activity.date), 'do LLL')}</div>
-                    <div>{format(new Date(activity.date), 'h:mm a')}</div>
+                    <div>{t('profiles.profileactivities.date', { date: new Date(activity.date) })}</div>
+                    <div>{t('profiles.profileactivities.time', { date: new Date(activity.date) })}</div>
                   </Card.Meta>
                 </Card.Content>
               </Card>

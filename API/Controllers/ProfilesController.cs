@@ -23,6 +23,7 @@ namespace API.Controllers
         }
 
         [HttpGet("{username}/activities")]
+        [AllowAnonymous]
         public async Task<ActionResult<List<UserActivityDto>>> GetUserActivities(
             string username, string predicate)
         {

@@ -3,6 +3,7 @@ using System.Threading.Tasks;
 using Application.Followers;
 using Application.Profiles;
 using MediatR;
+using Microsoft.AspNetCore.Authorization;
 using Microsoft.AspNetCore.Mvc;
 
 namespace API.Controllers
@@ -23,6 +24,7 @@ namespace API.Controllers
         }
 
         [HttpGet("{username}/follow")]
+        [AllowAnonymous]
         public async Task<ActionResult<List<Profile>>> GetFollowings(string username, string predicate)
         {
             return await Mediator.Send(new List.Query { Username = username, Predicate = predicate });
