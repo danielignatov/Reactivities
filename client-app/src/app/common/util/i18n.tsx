@@ -3,7 +3,7 @@ import { initReactI18next } from 'react-i18next';
 import LanguageDetector from 'i18next-browser-languagedetector';
 import Backend from 'i18next-http-backend';
 import { format as formatDate, formatDistance, formatRelative, isDate } from "date-fns";
-import { enGB, bg } from "date-fns/locale";
+import { enGB, bg, fr } from "date-fns/locale";
 
 i18n
   // i18next-http-backend
@@ -24,7 +24,18 @@ i18n
       escapeValue: false, // not needed for react as it escapes by default
       format: function (value, format: any, lng) {
         if (lng && isDate(value)) {
-          const locale: Locale = (lng === 'bg') ? bg : enGB;
+          let locale: Locale = enGB;
+
+          switch(lng) {
+            case 'bg': {
+              locale = bg;
+              break;
+            }
+            case 'fr': {
+              locale = fr;
+              break;
+            }
+          };
           
           if (format === "short")
             return formatDate(value, "P", { locale });

@@ -1,0 +1,198 @@
+{
+    "home": {
+      "homepage": {
+        "welcomeback": "Bienvenue",
+        "gotoactivities": "Allez aux activités!",
+        "welcometo": "Bienvenue sur"
+      }
+    },
+    "nav": {
+      "navbar": {
+        "createactivitybtn": "Créer une activité",
+        "myprofilebtn": "Mon profil",
+        "logoutbtn": "Logout",
+        "guest": "Invités",
+        "login": "Connexion",
+        "register": "Registre",
+        "settingsbtn": "Paramètres"
+      }
+    },
+    "profiles": {
+      "form": {
+        "profileaboutform": {
+          "displayname": "Nom d’affichage",
+          "bio": "Était",
+          "submit": "Envoyer"
+        }
+      },
+      "profileabout": {
+        "about": "Environ",
+        "nobio": "Apparemment, cet utilisateur préfère garder un air de mystère à leur sujet."
+      },
+      "profileactivities": {
+        "futureevents": "Événements futurs",
+        "pastevents": "Past Events",
+        "hosting": "Hosting",
+        "date": "{{ date, do LLL }}",
+        "time": "{{ date, h:mm a }}"
+      },
+      "profilecard": {
+        "followers": "Abonnés"
+      },
+      "profilecontent": {
+        "about": "Environ",
+        "photos": "Photos",
+        "activities": "Activités",
+        "followers": "Abonnés",
+        "following": "Suiveurs"
+      },
+      "profilefollowings": {
+        "peoplefollowing": "Les gens suivent",
+        "people": "Les gens",
+        "isfollowing": "suivent",
+        "nobodyisfollowing": "Personne ne suit",
+        "bethefirst": "Soyez le premier",
+        "doesnotfollowanybody": "ne suit personne"
+      },
+      "profileheader": {
+        "following": "S'abonner",
+        "notfollowing": "Ne suit pas",
+        "unfollow": "Ne plus suivre",
+        "follow": "S'abonner",
+        "followers": "Abonnés"
+      },
+      "profilepage": {
+        "loadingprofile": "Chargement du profil...",
+        "profilenotfound": "Profil introuvable"
+      },
+      "profilephotos": {
+        "photos": "Photos",
+        "addphoto": "Ajouter une photo",
+        "main": "Principal"
+      }
+    },
+    "user": {
+        "loginform": {
+          "logintositename": "Connectez-vous à Reactivities",
+          "login": "Connexion",
+          "noaccount": "Pas de compte?",
+          "forgotpass": "Mot de passe oublié ?",
+          "error": "Adresse e-mail ou mot de passe non valide"
+        },
+        "registerform": {
+          "signuptositename": "Inscrivez-vous à Reactivities",
+          "username": "Nom d’utilisateur",
+          "displayname": "Nom d’affichage",
+          "register": "Registre"
+        },
+        "settingsform": {
+          "usersettings": "Paramètres utilisateur",
+          "localeplaceholder": "Sélectionner une langue",
+          "localelabel": "Langue"
+        },
+        "forgotpassform": {
+          "header": "Mot de passe oublié",
+          "emailsent": "L’e-mail de réinitialisation du mot de passe a été envoyé"
+        },
+        "resetpassform": {
+          "header": "Réinitialiser le mot de passe",
+          "newpassword": "Nouveau mot de passe"
+        }
+    },
+    "activities": {
+      "dashboard": {
+        "activitydashboard": {
+            "more": "Plus..."
+        },
+        "activityfilters": {
+            "filters": "Filtres",
+            "all": "Toutes les activités",
+            "imgoing": "Je vais",
+            "imhosting": "J’héberge",
+            "selectdate": "Sélectionner la date"
+        },
+        "activitylist": {
+          "date": "{{ date, eeee do MMMM }}"
+        },
+        "activitylistitem": {
+            "hostedbyyou": "Vous organisez cette activité", 
+            "youaregoing": "Vous allez à cette activité",
+            "hostedby": "Hôte",
+            "time": "{{ date, h:mm a }}"
+        }
+      },
+      "details": {
+        "activitydetailedchat": {
+            "chatabouttheevent": "Discuter de cet événement",
+            "addyourcomment": "Ajoutez votre commentaire",
+            "addreply": "Ajouter une réponse",
+            "msgcannotbeempty": "Le message ne peut pas être vide"
+        },
+        "activitydetailedheader": {
+            "hostedby": "Hôte",
+            "manageevent": "Gérer l’événement",
+            "cancelattendance": "Annuler la participation",
+            "joinactivity": "Participer à l’activité",
+            "date": "{{ data, eeee do MMMM }}"
+        },
+        "activitydetailedinfo": {
+          "date": "{{ date, eeee do MMMM }} at {{ date, h:mm a }}"
+        },
+        "activitydetailedsidebar": {
+            "person": "Personne",
+            "peoplegoing": "Les gens qui y vont",
+            "host": "Hôte",
+            "following": "Suivant"
+        },
+        "activitydetails": {
+            "notfound": "Activité introuvable",
+            "loading": "Activité de chargement..."
+        }
+      },
+      "form": {
+        "activityform": {
+            "title": "Titre",
+            "desc": "Description",
+            "category": "Catégorie",
+            "date": "Date",
+            "time": "Heure",
+            "city": "Ville",
+            "venue": "Lieu",
+            "submit": "Envoyer"
+        }
+      }
+    },
+    "common": {
+        "sitename": "Réactivités",
+        "activity": "Activité",
+        "activities": "Activités",
+        "view": "Vue",
+        "cancel": "Annuler",
+        "edit": "Éditer",
+        "email": "Messagerie électronique",
+        "password": "Mot de passe",
+        "save": "Sauvegarder",
+        "send": "Envoyer"
+    },
+    "form": {
+        "isrequiredfield": "est obligatoire"
+    },
+    "loading": {
+        "app": "Chargement de l’application..."
+    },
+    "notfound": {
+        "msg": "Oups - nous avons cherché partout mais nous n’avons pas pu trouver cela.",
+        "toallactivities": "Retour à la page Activités"
+    },
+    "api": {
+        "Email already exists": "L’e-mail existe déjà",
+        "Username already exists": "Le nom d’utilisateur existe déjà",
+        "Problem creating user": "Problème de création d’utilisateur",
+        "Password must contain 5 characters": "Le mot de passe doit contenir 5 caractères",
+        "Invalid email address": "Adresse e-mail non valide",
+        "Email is required": "Un e-mail est requis",
+        "DisplayName is required": "DisplayName est requis",
+        "Username is required": "Le nom d’utilisateur est requis",
+        "User not found": "Utilisateur introuvable"
+    }
+  }
