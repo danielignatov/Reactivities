@@ -1,16 +1,11 @@
-using AutoMapper;
+#region Usings
 using System;
-using System.Collections.Generic;
-using System.Linq;
 using System.Threading.Tasks;
 using Microsoft.AspNetCore.Builder;
 using Microsoft.AspNetCore.Hosting;
-using Microsoft.AspNetCore.HttpsPolicy;
-using Microsoft.AspNetCore.Mvc;
 using Microsoft.Extensions.Configuration;
 using Microsoft.Extensions.DependencyInjection;
 using Microsoft.Extensions.Hosting;
-using Microsoft.Extensions.Logging;
 using Persistence;
 using Microsoft.EntityFrameworkCore;
 using MediatR;
@@ -32,6 +27,9 @@ using Application.Profiles;
 using Microsoft.AspNetCore.HttpOverrides;
 using System.IO;
 using Infrastructure.Notifications;
+using NSwag;
+using NSwag.Generation.Processors.Security;
+#endregion
 
 namespace API
 {
@@ -90,7 +88,7 @@ namespace API
             {
                 cfg.RegisterValidatorsFromAssemblyContaining<Create>();
             });
-            
+
             services.AddCors(opt =>
             {
                 opt.AddPolicy("CorsPolicy", policy =>
@@ -107,7 +105,24 @@ namespace API
             services.AddAutoMapper(typeof(List.Handler));
             services.AddSignalR();
 
-            var builder = services.AddIdentityCore<AppUser>(opt => {
+            // Register the Swagger services
+            services.AddSwaggerDocument(document =>
+            {
+                document.SchemaType = NJsonSchema.SchemaType.OpenApi3;
+                document.Title = "Reactivities API";
+                document.DocumentProcessors.Add(
+                    new SecurityDefinitionAppender(
+                        "JWT Token",
+                        new OpenApiSecurityScheme {
+                            Type = OpenApiSecuritySchemeType.ApiKey,
+                            Name = "Authorization",
+                            Description = "Copy 'Bearer ' + valid JWT token into field",
+                            In = OpenApiSecurityApiKeyLocation.Header
+                        }));
+            });
+
+            var builder = services.AddIdentityCore<AppUser>(opt =>
+            {
                 opt.Password.RequireDigit = false;
                 opt.Password.RequiredLength = 5;
                 opt.Password.RequiredUniqueChars = 0;
@@ -115,7 +130,7 @@ namespace API
                 opt.Password.RequireNonAlphanumeric = false;
                 opt.Password.RequireUppercase = false;
             });
-            
+
             var identityBuilder = new IdentityBuilder(builder.UserType, builder.Services);
             identityBuilder.AddEntityFrameworkStores<DataContext>();
             identityBuilder.AddSignInManager<SignInManager<AppUser>>();
@@ -149,7 +164,7 @@ namespace API
                     };
                     opt.Events = new JwtBearerEvents
                     {
-                        OnMessageReceived = context => 
+                        OnMessageReceived = context =>
                         {
                             var accessToken = context.Request.Query["access_token"];
                             var path = context.HttpContext.Request.Path;
@@ -179,11 +194,16 @@ namespace API
         // This method gets called by the runtime. Use this method to configure the HTTP request pipeline.
         public void Configure(IApplicationBuilder app, IWebHostEnvironment env)
         {
-            app.UseForwardedHeaders(new ForwardedHeadersOptions {
+            app.UseForwardedHeaders(new ForwardedHeadersOptions
+            {
                 ForwardedHeaders = ForwardedHeaders.XForwardedFor | ForwardedHeaders.XForwardedProto
             });
 
             app.UseMiddleware<ErrorHandlingMiddleware>();
+
+            // Register the Swagger generator and the Swagger UI middlewares
+            app.UseOpenApi();
+            app.UseSwaggerUi3();
 
             if (env.IsDevelopment())
             {
