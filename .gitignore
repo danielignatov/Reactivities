@@ -3,6 +3,7 @@
 bin
 obj
 .vscode
+.vs
 .DS_Store
 *.db
 debug.log
